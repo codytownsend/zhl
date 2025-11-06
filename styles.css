@@ -495,6 +495,8 @@ section {
 }
 
 .stat {
+    display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -1263,11 +1265,6 @@ section {
 
     .case-study-card h3 {
         font-size: 1.25rem;
-    }
-
-    .case-stats .stat {
-        display: flex;
-        flex-direction: column;
     }
 
     /* Testimonials Section */
