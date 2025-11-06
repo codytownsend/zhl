@@ -1,3 +1,4 @@
+// Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     // GSAP HERO SECTION ANIMATIONS
@@ -5,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if GSAP loaded
     if (typeof gsap !== 'undefined') {
+        console.log('✅ GSAP loaded successfully');
         
         // Mark that GSAP is ready
         document.documentElement.classList.add('gsap-ready');
@@ -18,7 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
             y: 50
         });
         
-        // BLINDS FLIP ANIMATION
+        // Master timeline for entire hero sequence
+        const masterTimeline = gsap.timeline({
+            onStart: () => console.log('🎬 Hero blinds animation starting...'),
+            onComplete: () => console.log('✅ All hero animations complete')
+        });
+        
+        // BLINDS FLIP ANIMATION - Flip IN to reveal image
+        // Blinds start at rotateY(90deg) and opacity 0 (set in CSS)
+        // They flip to rotateY(0deg) to reveal the image
         masterTimeline.to('.blind', {
             rotationY: 0,      // Flip to flat (revealing image)
             opacity: 1,        // Fade in
@@ -31,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             onStart: () => console.log('🎭 Blinds flipping IN to reveal image...')
         });
         
-        // TEXT ANIMATIONS
+        // TEXT ANIMATIONS (start while blinds are still flipping)
         masterTimeline.to('.hero-title', {
             opacity: 1,
             y: 0,
@@ -75,6 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const blinds = document.querySelector('.hero-blinds');
         if (blinds) blinds.style.display = 'none';
     }
+    
+    // ============================================
+    // ORIGINAL FUNCTIONALITY CONTINUES BELOW
+    // ============================================
     
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -173,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             image: '',
             logo: 'Haven Furniture',
-            quote: "We were hemorrhaging customers at checkout. ZHL identified every friction point and rebuilt our flow from the ground up. Cart abandonment dropped by half, and our conversion rate doubled. Best investment we've made.",
+            quote: "We were hemorrhaging customers at checkout. ZHL identified every friction point and rebuilt our flow from the ground up. Abandonment dropped almost dropped by half, and our conversion rate doubled.",
             description: 'Working with ZHL transformed our digital presence and significantly increased our conversion rates.',
             name: 'Sophia Patel',
             title: 'Director of Digital'
@@ -256,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
+            // Simulate API call (you're using Web3Forms so this will actually submit)
             setTimeout(() => {
                 // Hide form and show success message with GSAP
                 if (typeof gsap !== 'undefined' && successMessage) {

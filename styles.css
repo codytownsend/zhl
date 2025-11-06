@@ -6,7 +6,7 @@
 }
 
 :root {
-    --primary-red: #e74c3c;
+    --primary-red: rgb(231, 76, 60);
     --primary-orange: #e67e22;
     --dark-text: #252229;
     --light-text: #7f8c8d;
@@ -458,10 +458,6 @@ section {
     transform: translateY(-5px);
 }
 
-.case-study-image {
-    margin-bottom: 1rem;
-}
-
 .case-study-image img {
     width: 100%;
     height: auto;
@@ -499,8 +495,6 @@ section {
 }
 
 .stat {
-    display: flex;
-    flex-direction: column;
     flex: 1;
 }
 
@@ -657,7 +651,7 @@ section {
     display: flex;
     gap: 3rem;
     align-items: center;
-    max-width: 1200px;
+    max-width: var(--max-width);
 }
 
 .client-image {
@@ -729,7 +723,7 @@ section {
 }
 
 .nav-dot:hover {
-    background: rgba(37, 34, 41, 0.4);
+    background: rgba(255, 255, 255, 0.75);
 }
 
 .nav-dot.active {
@@ -991,6 +985,7 @@ section {
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1.25rem;
 }
 
 .form-group label {
@@ -1029,7 +1024,7 @@ section {
 }
 
 .submit-btn:hover {
-    background: var(--primary-orange);
+    background: var(--dark-text);
     transform: translateY(-2px);
 }
 
@@ -1256,6 +1251,10 @@ section {
         scroll-snap-align: start;
         min-width: calc(100% - 3rem);
         padding: 1.25rem;
+    }
+
+    .case-study-image {
+        margin-bottom: 1rem;
     }
 
     .case-study-image img {
@@ -1495,12 +1494,10 @@ textarea:focus {
     flex: 1;
     background-image: url('img/hero-desktop.jpg');
     background-size: 800% 125%;
-    /* Stretch across all blinds */
     background-position: center;
     background-repeat: no-repeat;
     transform-origin: center;
     position: relative;
-    /* Start rotated 90 degrees (invisible from side view) */
     transform: rotateY(90deg);
     opacity: 0;
 }

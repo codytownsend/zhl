@@ -20,7 +20,7 @@
         <nav class="nav" aria-label="Main navigation">
             <div class="nav-menu" id="nav-menu">
                 <div class="nav-brand">
-                    <a href="#home" aria-label="ZHL - Zero Hour Labs home"><img src="img/ZHL-logo(light).png"
+                    <a href="#home" aria-label="ZHL - Zero Hour Labs home"><img src="img/ZHL-Logo(light).png"
                             alt="ZHL - Zero Hour Labs" class="logo"></a>
                 </div>
                 <div class="nav-center">
@@ -282,8 +282,7 @@
                     <blockquote>
                         <p>
                             "ZHL transformed our online store from a basic catalog into an experience that actually
-                            converts. Our AOV increased by
-                            167%, and customers keep telling us how much easier it is to shop with us now."
+                            converts. Our AOV increased by 167%, and customers keep telling us how much easier it is to shop with us now."
                         </p>
                     </blockquote>
                     <footer class="testimonial-author">
@@ -376,33 +375,35 @@
                 <div class="contact-form-container">
                     <!-- Success Message -->
                     <div class="form-success-message" id="formSuccessMessage">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                            <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+                            </path>
                         </svg>
                         <h3>Message Sent!</h3>
                         <p>Thank you for reaching out. We'll get back to you soon.</p>
                     </div>
-                    
-                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Contact form">
-                        <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
-                        <input type="hidden" name="subject" value="New Contact Form Submission from ZHL">
-                    
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Jane Smith" required aria-required="true">
+
+                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+                        <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f" />
+
+                        <div class="form-group-container">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input id="name" name="name" class="form-input" placeholder="Your name" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" name="email" class="form-input" placeholder="Your email" type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-textarea" id="message" name="message" placeholder="Your message" rows="5"></textarea>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="jane@framer.com" required aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Write your message" rows="5" required
-                                aria-required="true"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -414,7 +415,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="#home" aria-label="ZHL - Zero Hour Labs home">
-                    <img src="img/ZHL-logo(light).png" alt="ZHL - Zero Hour Labs" class="logo">
+                    <img src="img/ZHL-Logo(light).png" alt="ZHL - Zero Hour Labs" class="logo">
                 </a>
             </div>
             <div class="footer-info">
