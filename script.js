@@ -1,4 +1,3 @@
-// Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     // GSAP HERO SECTION ANIMATIONS
@@ -6,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if GSAP loaded
     if (typeof gsap !== 'undefined') {
-        console.log('✅ GSAP loaded successfully');
         
         // Mark that GSAP is ready
         document.documentElement.classList.add('gsap-ready');
@@ -20,28 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
             y: 50
         });
         
-        // Master timeline for entire hero sequence
-        const masterTimeline = gsap.timeline({
-            onStart: () => console.log('🎬 Hero blinds animation starting...'),
-            onComplete: () => console.log('✅ All hero animations complete')
-        });
-        
-        // BLINDS FLIP ANIMATION - Flip IN to reveal image
-        // Blinds start at rotateY(90deg) and opacity 0 (set in CSS)
-        // They flip to rotateY(0deg) to reveal the image
+        // BLINDS FLIP ANIMATION
         masterTimeline.to('.blind', {
             rotationY: 0,      // Flip to flat (revealing image)
             opacity: 1,        // Fade in
-            duration: 0.2,     // Duration for each blind
+            duration: 0.6,     // Duration for each blind
             stagger: {
-                each: 0.2,     // Wait 0.5s between each blind
+                each: 0.5,     // Wait 0.5s between each blind
                 from: "start"  // Start from left
             },
             ease: "power2.inOut",
             onStart: () => console.log('🎭 Blinds flipping IN to reveal image...')
         });
         
-        // TEXT ANIMATIONS (start while blinds are still flipping)
+        // TEXT ANIMATIONS
         masterTimeline.to('.hero-title', {
             opacity: 1,
             y: 0,
@@ -85,10 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const blinds = document.querySelector('.hero-blinds');
         if (blinds) blinds.style.display = 'none';
     }
-    
-    // ============================================
-    // ORIGINAL FUNCTIONALITY CONTINUES BELOW
-    // ============================================
     
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -239,6 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Form submission handling
     const contactForm = document.querySelector('.contact-form');
+    const successMessage = document.getElementById('formSuccessMessage');
+    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -262,18 +250,60 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission
+            // Disable form and show loading state
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Simulate API call
             setTimeout(() => {
-                alert('Thank you for your message! We\'ll get back to you soon.');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                // Hide form and show success message with GSAP
+                if (typeof gsap !== 'undefined' && successMessage) {
+                    // Fade out form
+                    gsap.to(contactForm, {
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            // Show success message
+                            gsap.set(successMessage, { scale: 0.8, opacity: 0 });
+                            successMessage.classList.add('show');
+                            gsap.to(successMessage, {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.5,
+                                ease: "back.out(1.7)"
+                            });
+                        }
+                    });
+                    
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        gsap.to(successMessage, {
+                            scale: 0.8,
+                            opacity: 0,
+                            duration: 0.3,
+                            onComplete: () => {
+                                successMessage.classList.remove('show');
+                                this.reset();
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                                gsap.to(contactForm, {
+                                    opacity: 1,
+                                    duration: 0.3
+                                });
+                            }
+                        });
+                    }, 5000);
+                } else {
+                    // Fallback without GSAP
+                    if (successMessage) successMessage.classList.add('show');
+                    setTimeout(() => {
+                        if (successMessage) successMessage.classList.remove('show');
+                        this.reset();
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 5000);
+                }
             }, 2000);
         });
     }
