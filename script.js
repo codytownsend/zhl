@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
         masterTimeline.to('.blind', {
             rotationY: 0,      // Flip to flat (revealing image)
             opacity: 1,        // Fade in
-            duration: 0.6,     // Duration for each blind
+            duration: 0.15,     // Duration for each blind
             stagger: {
-                each: 0.5,     // Wait 0.5s between each blind
+                each: 0.2,     // Wait 0.2s between each blind
                 from: "start"  // Start from left
             },
             ease: "power2.inOut",
