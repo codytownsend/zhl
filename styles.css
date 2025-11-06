@@ -8,7 +8,7 @@
 :root {
     --primary-red: rgb(231, 76, 60);
     --primary-orange: #e67e22;
-    --dark-text: #252229;
+    --dark-text: rgb(37, 34, 41);
     --light-text: #7f8c8d;
     --light-bg: #f8f9fa;
     --tan-bg: #F5F1E8;
@@ -109,6 +109,10 @@ section {
     color: var(--primary-red) !important;
 }
 
+.nav-mobile {
+    display: none;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -116,6 +120,11 @@ section {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+.logo-mobile {
+    display: none;
+    max-width: 80px;
 }
 
 .nav-toggle span {
@@ -1134,19 +1143,33 @@ section {
         border-radius: 36px;
     }
 
+    .nav-mobile {
+        background: rgba(37, 34, 41, .85);
+        display: flex;
+        padding: .75rem 2rem;
+        border-radius: 36px;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .nav-toggle {
         display: flex;
-        position: fixed;
-        top: 1.5rem;
-        right: 2rem;
         z-index: 1002;
-        background: rgba(255, 255, 255, 0.95);
         padding: 0.75rem;
         border-radius: 8px;
     }
 
+    .logo-mobile {
+        display: flex;
+    }
+
     .nav-toggle span {
-        background: var(--dark-text);
+        background: var(--tan-bg);
+    }
+
+    .cta-button {
+        background-color: var(--primary-red);
     }
 
     /* Services Section Slider */
@@ -1205,14 +1228,20 @@ section {
         gap: 1rem;
     }
 
+    .brands-logos>.brand-logo:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 50%;
+    }
+
     .brand-logo {
         min-width: auto;
         padding: 1rem;
     }
 
     .brand-logo img {
-        max-width: 80px;
-        max-height: 30px;
+        max-width: 100px;
+        max-height: 50px;
     }
 
     /* Case Studies Slider */
@@ -1388,6 +1417,7 @@ section {
 
     .contact-form-container {
         padding: 2rem;
+        width: 100%;
     }
 
     /* Footer */
@@ -1405,7 +1435,7 @@ section {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .hero {
@@ -1635,8 +1665,8 @@ html:not(.gsap-ready) .hero {
         top: 0;
         left: 0;
         width: 100%;
-        height: 60vh;
-        /* Image takes top 60% of viewport */
+        height: 58vh;
+        /* Image takes top 58% of viewport */
     }
 
     /* Mobile hero layout - stacked image and content */
@@ -1671,7 +1701,7 @@ html:not(.gsap-ready) .hero {
     .hero-blinds-mobile .blind {
         flex: 1;
         background-image: url('img/hero-mobile.jpg');
-        background-size: 100% 400%;
+        background-size: 110% 400%;
         /* Cover full width, height distributed across 4 blinds */
         background-position: center;
         background-repeat: no-repeat;

@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
             masterTimeline.to(blindsSelector, {
                 rotationX: 0,      // Flip to flat vertically
                 opacity: 1,
-                duration: 0.15,
+                duration: 0.25,
                 stagger: {
-                    each: 0.2,
+                    each: 0.5,
                     from: "start"  // Start from top
                 },
                 ease: "power2.inOut",
