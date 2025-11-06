@@ -270,56 +270,71 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Simulate API call (you're using Web3Forms so this will actually submit)
-            setTimeout(() => {
-                // Hide form and show success message with GSAP
-                if (typeof gsap !== 'undefined' && successMessage) {
-                    // Fade out form
-                    gsap.to(contactForm, {
-                        opacity: 0,
-                        duration: 0.3,
-                        onComplete: () => {
-                            // Show success message
-                            gsap.set(successMessage, { scale: 0.8, opacity: 0 });
-                            successMessage.classList.add('show');
-                            gsap.to(successMessage, {
-                                scale: 1,
-                                opacity: 1,
-                                duration: 0.5,
-                                ease: "back.out(1.7)"
-                            });
-                        }
-                    });
-                    
-                    // Reset form after 5 seconds
-                    setTimeout(() => {
-                        gsap.to(successMessage, {
-                            scale: 0.8,
+            // Actually submit to Web3Forms API
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hide form and show success message with GSAP
+                    if (typeof gsap !== 'undefined' && successMessage) {
+                        // Fade out form
+                        gsap.to(contactForm, {
                             opacity: 0,
                             duration: 0.3,
                             onComplete: () => {
-                                successMessage.classList.remove('show');
-                                this.reset();
-                                submitBtn.textContent = originalText;
-                                submitBtn.disabled = false;
-                                gsap.to(contactForm, {
+                                // Show success message
+                                gsap.set(successMessage, { scale: 0.8, opacity: 0 });
+                                successMessage.classList.add('show');
+                                gsap.to(successMessage, {
+                                    scale: 1,
                                     opacity: 1,
-                                    duration: 0.3
+                                    duration: 0.5,
+                                    ease: "back.out(1.7)"
                                 });
                             }
                         });
-                    }, 5000);
+                        
+                        // Reset form after 5 seconds
+                        setTimeout(() => {
+                            gsap.to(successMessage, {
+                                scale: 0.8,
+                                opacity: 0,
+                                duration: 0.3,
+                                onComplete: () => {
+                                    successMessage.classList.remove('show');
+                                    contactForm.reset();
+                                    submitBtn.textContent = originalText;
+                                    submitBtn.disabled = false;
+                                    gsap.to(contactForm, {
+                                        opacity: 1,
+                                        duration: 0.3
+                                    });
+                                }
+                            });
+                        }, 5000);
+                    } else {
+                        // Fallback without GSAP
+                        if (successMessage) successMessage.classList.add('show');
+                        setTimeout(() => {
+                            if (successMessage) successMessage.classList.remove('show');
+                            contactForm.reset();
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }, 5000);
+                    }
                 } else {
-                    // Fallback without GSAP
-                    if (successMessage) successMessage.classList.add('show');
-                    setTimeout(() => {
-                        if (successMessage) successMessage.classList.remove('show');
-                        this.reset();
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }, 5000);
+                    throw new Error('Submission failed');
                 }
-            }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form. Please try again.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
     }
 
