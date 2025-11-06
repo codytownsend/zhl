@@ -458,6 +458,10 @@ section {
     transform: translateY(-5px);
 }
 
+.case-study-image {
+    margin-bottom: 1rem;
+}
+
 .case-study-image img {
     width: 100%;
     height: auto;
@@ -495,6 +499,8 @@ section {
 }
 
 .stat {
+    display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -651,6 +657,7 @@ section {
     display: flex;
     gap: 3rem;
     align-items: center;
+    max-width: 1200px;
 }
 
 .client-image {
@@ -716,7 +723,7 @@ section {
     height: 12px;
     border-radius: 50%;
     border: none;
-    background: rgba(37, 34, 41, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -1201,10 +1208,6 @@ section {
         scroll-snap-align: start;
         min-width: calc(100% - 3rem);
         padding: 1.25rem;
-    }
-
-    .case-study-image {
-        margin-bottom: 1rem;
     }
 
     .case-study-image img {
