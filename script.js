@@ -20,26 +20,45 @@ document.addEventListener('DOMContentLoaded', function() {
             y: 50
         });
         
+        // Detect if mobile
+        const isMobile = window.innerWidth <= 768;
+        const blindsSelector = isMobile ? '.hero-blinds-mobile .blind' : '.hero-blinds-desktop .blind';
+        const blindsContainer = isMobile ? '.hero-blinds-mobile' : '.hero-blinds-desktop';
+        
         // Master timeline for entire hero sequence
         const masterTimeline = gsap.timeline({
             onStart: () => console.log('🎬 Hero blinds animation starting...'),
             onComplete: () => console.log('✅ All hero animations complete')
         });
         
-        // BLINDS FLIP ANIMATION - Flip IN to reveal image
-        // Blinds start at rotateY(90deg) and opacity 0 (set in CSS)
-        // They flip to rotateY(0deg) to reveal the image
-        masterTimeline.to('.blind', {
-            rotationY: 0,      // Flip to flat (revealing image)
-            opacity: 1,        // Fade in
-            duration: 0.15,     // Duration for each blind
-            stagger: {
-                each: 0.2,     // Wait 0.2s between each blind
-                from: "start"  // Start from left
-            },
-            ease: "power2.inOut",
-            onStart: () => console.log('🎭 Blinds flipping IN to reveal image...')
-        });
+        // BLINDS FLIP ANIMATION - Different for mobile vs desktop
+        if (isMobile) {
+            // MOBILE: Vertical opening (rotateX)
+            masterTimeline.to(blindsSelector, {
+                rotationX: 0,      // Flip to flat vertically
+                opacity: 1,
+                duration: 0.15,
+                stagger: {
+                    each: 0.2,
+                    from: "start"  // Start from top
+                },
+                ease: "power2.inOut",
+                onStart: () => console.log('🎭 Mobile blinds flipping vertically...')
+            });
+        } else {
+            // DESKTOP: Horizontal opening (rotateY)
+            masterTimeline.to(blindsSelector, {
+                rotationY: 0,      // Flip to flat horizontally
+                opacity: 1,
+                duration: 0.15,
+                stagger: {
+                    each: 0.2,
+                    from: "start"  // Start from left
+                },
+                ease: "power2.inOut",
+                onStart: () => console.log('🎭 Desktop blinds flipping horizontally...')
+            });
+        }
         
         // TEXT ANIMATIONS (start while blinds are still flipping)
         masterTimeline.to('.hero-title', {
@@ -62,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, "-=0.4");
         
         // Subtle parallax effect on the blinds (image)
-        gsap.to('.hero-blinds', {
+        gsap.to(blindsContainer, {
             y: 100,
             ease: "none",
             scrollTrigger: {
@@ -82,8 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (el) el.style.opacity = '1';
         });
         // Hide blinds if GSAP fails
-        const blinds = document.querySelector('.hero-blinds');
-        if (blinds) blinds.style.display = 'none';
+        const blindsDesktop = document.querySelector('.hero-blinds-desktop');
+        const blindsMobile = document.querySelector('.hero-blinds-mobile');
+        if (blindsDesktop) blindsDesktop.style.display = 'none';
+        if (blindsMobile) blindsMobile.style.display = 'none';
     }
     
     // ============================================
