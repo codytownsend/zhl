@@ -932,6 +932,54 @@ section {
     padding: 3rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* Form Success Message */
+.form-success-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.form-success-message.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.form-success-message svg {
+    width: 64px;
+    height: 64px;
+    color: #27ae60;
+    margin-bottom: 1.5rem;
+}
+
+.form-success-message h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+.form-success-message p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin: 0;
 }
 
 .contact-form {
