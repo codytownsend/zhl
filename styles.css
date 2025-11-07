@@ -135,6 +135,19 @@ section {
     transition: all 0.3s ease;
 }
 
+/* Hamburger to X transformation */
+.nav-menu.active~.nav-mobile .nav-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-menu.active~.nav-mobile .nav-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-menu.active~.nav-mobile .nav-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -1215,6 +1228,11 @@ section {
         flex: 0 0 calc(100% - 3rem);
         scroll-snap-align: start;
         min-width: calc(100% - 3rem);
+        padding: 1.25rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.4rem;
     }
 
     /* Brands Section */
@@ -1278,9 +1296,9 @@ section {
     }
 
     .case-study-card {
-        flex: 0 0 calc(100% - 3rem);
+        flex: 0 0 calc(85% - 2rem);
         scroll-snap-align: start;
-        min-width: calc(100% - 3rem);
+        min-width: calc(85% - 2rem);
         padding: 1.25rem;
     }
 
@@ -1359,6 +1377,7 @@ section {
 
     .features li {
         padding: 0.5rem 0;
+        padding-left: 1.5rem;
         font-size: 0.85rem;
     }
 
@@ -1411,7 +1430,7 @@ section {
     }
 
     .contact-text h2 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         text-align: center;
     }
 
@@ -1515,6 +1534,10 @@ textarea:focus {
     display: flex;
     z-index: 1;
     pointer-events: none;
+    -webkit-perspective: 2000px;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 /* Desktop blinds - horizontal layout (default) */
@@ -1537,7 +1560,14 @@ textarea:focus {
     transform-origin: center;
     position: relative;
     transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
     opacity: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 /* Position each blind to show the correct part of the image */
@@ -1708,8 +1738,15 @@ html:not(.gsap-ready) .hero {
         transform-origin: center;
         position: relative;
         transform: rotateX(90deg);
+        -webkit-transform: rotateX(90deg);
         /* Start rotated on X axis for vertical opening */
         opacity: 0;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
     }
 
     /* Position each blind to show the correct part of the image */
