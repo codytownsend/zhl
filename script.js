@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof gsap !== 'undefined') {
         console.log('✅ GSAP loaded successfully');
         
-        // Detect Safari
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        console.log('🌐 Browser:', isSafari ? 'Safari' : 'Other');
-        
         // Mark that GSAP is ready
         document.documentElement.classList.add('gsap-ready');
         
@@ -29,80 +25,39 @@ document.addEventListener('DOMContentLoaded', function() {
         const blindsSelector = isMobile ? '.hero-blinds-mobile .blind' : '.hero-blinds-desktop .blind';
         const blindsContainer = isMobile ? '.hero-blinds-mobile' : '.hero-blinds-desktop';
         
-        // Safari detection
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        
         // Master timeline for entire hero sequence
         const masterTimeline = gsap.timeline({
             onStart: () => console.log('🎬 Hero blinds animation starting...'),
             onComplete: () => console.log('✅ All hero animations complete')
         });
         
-        // BLINDS FLIP ANIMATION - Use simpler animation for Safari if needed
-        if (isSafari) {
-            console.log('🍎 Using Safari-optimized animation');
-            // Simpler fade-in animation that works better on Safari
-            if (isMobile) {
-                masterTimeline.to(blindsSelector, {
-                    rotationX: 0,
-                    opacity: 1,
-                    duration: 0.3,
-                    stagger: {
-                        each: 0.15,
-                        from: "start"
-                    },
-                    ease: "power2.out",
-                    force3D: true,
-                    transformPerspective: 1000,
-                    onStart: () => console.log('🎭 Mobile blinds flipping vertically (Safari)...')
-                });
-            } else {
-                masterTimeline.to(blindsSelector, {
-                    rotationY: 0,
-                    opacity: 1,
-                    duration: 0.2,
-                    stagger: {
-                        each: 0.1,
-                        from: "start"
-                    },
-                    ease: "power2.out",
-                    force3D: true,
-                    transformPerspective: 1000,
-                    onStart: () => console.log('🎭 Desktop blinds flipping horizontally (Safari)...')
-                });
-            }
+        // BLINDS FLIP ANIMATION - Different for mobile vs desktop
+        if (isMobile) {
+            // MOBILE: Vertical opening (rotateX)
+            masterTimeline.to(blindsSelector, {
+                rotationX: 0,      // Flip to flat vertically
+                opacity: 1,
+                duration: 0.25,
+                stagger: {
+                    each: 0.5,
+                    from: "start"  // Start from top
+                },
+                ease: "power2.inOut",
+                onStart: () => console.log('🎭 Mobile blinds flipping vertically...')
+            });
         } else {
-            if (isMobile) {
-                // MOBILE: Vertical opening (rotateX)
-                masterTimeline.to(blindsSelector, {
-                    rotationX: 0,      // Flip to flat vertically
-                    opacity: 1,
-                    duration: 0.25,
-                    stagger: {
-                        each: 0.5,
-                        from: "start"  // Start from top
-                    },
-                    ease: "power2.inOut",
-                    force3D: true,
-                    transformPerspective: 1000,
-                    onStart: () => console.log('🎭 Mobile blinds flipping vertically...')
-                });
-            } else {
-                // DESKTOP: Horizontal opening (rotateY)
-                masterTimeline.to(blindsSelector, {
-                    rotationY: 0,      // Flip to flat horizontally
-                    opacity: 1,
-                    duration: 0.15,
-                    stagger: {
-                        each: 0.2,
-                        from: "start"  // Start from left
-                    },
-                    ease: "power2.inOut",
-                    force3D: true,
-                    transformPerspective: 1000,
-                    onStart: () => console.log('🎭 Desktop blinds flipping horizontally...')
-                });
-            }
+            // DESKTOP: Horizontal opening (rotateY)
+            masterTimeline.to(blindsSelector, {
+                rotationY: 0,      // Flip to flat horizontally
+                opacity: 1,
+                duration: 0.15,
+                stagger: {
+                    each: 0.2,
+                    from: "start"  // Start from left
+                },
+                ease: "power2.inOut",
+                onStart: () => console.log('🎭 Desktop blinds flipping horizontally...')
+            });
         }
         
         // TEXT ANIMATIONS (start while blinds are still flipping)
