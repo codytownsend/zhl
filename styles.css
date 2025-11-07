@@ -1747,7 +1747,7 @@ html:not(.gsap-ready) .hero {
     .hero-blinds-mobile .blind {
         flex: 1;
         background-image: url('img/hero-mobile.jpg');
-        background-size: 110% 400%;
+        background-size: 110% 800%;
         /* Cover full width, height distributed across 4 blinds */
         background-position: center;
         background-repeat: no-repeat;
@@ -1771,14 +1771,30 @@ html:not(.gsap-ready) .hero {
     }
 
     .hero-blinds-mobile .blind:nth-child(2) {
-        background-position-y: 33.33%;
+        background-position-y: 14.29%;
     }
 
     .hero-blinds-mobile .blind:nth-child(3) {
-        background-position-y: 66.66%;
+        background-position-y: 28.57%;
     }
 
     .hero-blinds-mobile .blind:nth-child(4) {
+        background-position-y: 42.86%;
+    }
+
+    .hero-blinds-mobile .blind:nth-child(5) {
+        background-position-y: 57.14%;
+    }
+
+    .hero-blinds-mobile .blind:nth-child(6) {
+        background-position-y: 71.43%;
+    }
+
+    .hero-blinds-mobile .blind:nth-child(7) {
+        background-position-y: 85.71%;
+    }
+
+    .hero-blinds-mobile .blind:nth-child(8) {
         background-position-y: 100%;
     }
 }
