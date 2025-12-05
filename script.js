@@ -1,155 +1,122 @@
-// Mobile Navigation Toggle
+// ZHL - Zero Hour Labs
+// Clean, refined interactions
+
 document.addEventListener('DOMContentLoaded', function() {
+    
     // ============================================
-    // GSAP HERO SECTION ANIMATIONS
+    // SCROLL REVEAL
     // ============================================
     
-    // Check if GSAP loaded
-    if (typeof gsap !== 'undefined') {
-        console.log('✅ GSAP loaded successfully');
-        
-        // Mark that GSAP is ready
-        document.documentElement.classList.add('gsap-ready');
-        
-        // Register GSAP plugin
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Set initial states explicitly
-        gsap.set(['.hero-title', '.hero-subtitle', '.cta-button'], {
-            opacity: 0,
-            y: 50
-        });
-        
-        // Detect if mobile
-        const isMobile = window.innerWidth <= 768;
-        const blindsSelector = isMobile ? '.hero-blinds-mobile .blind' : '.hero-blinds-desktop .blind';
-        const blindsContainer = isMobile ? '.hero-blinds-mobile' : '.hero-blinds-desktop';
-        
-        // Master timeline for entire hero sequence
-        const masterTimeline = gsap.timeline({
-            onStart: () => console.log('🎬 Hero blinds animation starting...'),
-            onComplete: () => console.log('✅ All hero animations complete')
-        });
-        
-        // BLINDS FLIP ANIMATION - Different for mobile vs desktop
-        if (isMobile) {
-            // MOBILE: Vertical opening (rotateX)
-            masterTimeline.to(blindsSelector, {
-                rotationX: 0,      // Flip to flat vertically
-                opacity: 1,
-                duration: 0.5,
-                stagger: {
-                    each: 0.5,
-                    from: "start"  // Start from top
-                },
-                ease: "power2.inOut",
-                onStart: () => console.log('🎭 Mobile blinds flipping vertically...')
-            });
-        } else {
-            // DESKTOP: Horizontal opening (rotateY)
-            masterTimeline.to(blindsSelector, {
-                rotationY: 0,      // Flip to flat horizontally
-                opacity: 1,
-                duration: 0.4,
-                stagger: {
-                    each: 0.25,
-                    from: "start"  // Start from left
-                },
-                ease: "power2.inOut",
-                onStart: () => console.log('🎭 Desktop blinds flipping horizontally...')
-            });
-        }
-        
-        // TEXT ANIMATIONS (start while blinds are still flipping)
-        masterTimeline.to('.hero-title', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out"
-        }, "-=0.4")
-        .to('.hero-subtitle', {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out"
-        }, "-=0.6")
-        .to('.cta-button', {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out"
-        }, "-=0.4");
-        
-        // Subtle parallax effect on the blinds (image)
-        gsap.to(blindsContainer, {
-            y: 100,
-            ease: "none",
-            scrollTrigger: {
-                trigger: '.hero',
-                start: "top top",
-                end: "bottom top",
-                scrub: 1,
-                onEnter: () => console.log('📜 Parallax active')
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
             }
         });
-        
-    } else {
-        console.error('❌ GSAP not loaded - showing content immediately');
-        // Fallback: show content immediately if GSAP doesn't load
-        const elements = document.querySelectorAll('.hero-title, .hero-subtitle, .cta-button');
-        elements.forEach(el => {
-            if (el) el.style.opacity = '1';
-        });
-        // Hide blinds if GSAP fails
-        const blindsDesktop = document.querySelector('.hero-blinds-desktop');
-        const blindsMobile = document.querySelector('.hero-blinds-mobile');
-        if (blindsDesktop) blindsDesktop.style.display = 'none';
-        if (blindsMobile) blindsMobile.style.display = 'none';
-    }
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
     
+    const revealElements = document.querySelectorAll(
+        '.problem-content, ' +
+        '.services-header, .service-card, ' +
+        '.work-header, .testimonial-card, ' +
+        '.process-header, .process-steps, ' +
+        '.pricing-header, .pricing-card, ' +
+        '.contact-content, .contact-form-container'
+    );
+    
+    revealElements.forEach((el, index) => {
+        el.classList.add('reveal-on-scroll');
+        
+        // Stagger delays for grid items
+        if (el.classList.contains('service-card')) {
+            const cardIndex = [...document.querySelectorAll('.service-card')].indexOf(el);
+            el.style.transitionDelay = `${cardIndex * 0.1}s`;
+        } else if (el.classList.contains('testimonial-card')) {
+            const cardIndex = [...document.querySelectorAll('.testimonial-card')].indexOf(el);
+            el.style.transitionDelay = `${cardIndex * 0.1}s`;
+        } else if (el.classList.contains('pricing-card')) {
+            const cardIndex = [...document.querySelectorAll('.pricing-card')].indexOf(el);
+            el.style.transitionDelay = `${cardIndex * 0.15}s`;
+        }
+        
+        revealObserver.observe(el);
+    });
+
     // ============================================
-    // ORIGINAL FUNCTIONALITY CONTINUES BELOW
+    // MOBILE NAVIGATION
     // ============================================
     
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const body = document.body;
 
+    function openMobileMenu() {
+        navMenu.classList.add('active');
+        navToggle.classList.add('active');
+        navToggle.setAttribute('aria-expanded', 'true');
+        body.style.overflow = 'hidden';
+        
+        // Animate toggle to X
+        const spans = navToggle.querySelectorAll('span');
+        spans[0].style.transform = 'rotate(45deg) translateY(0)';
+        spans[1].style.opacity = '0';
+        spans[1].style.transform = 'scaleX(0)';
+        spans[2].style.transform = 'rotate(-45deg) translateY(0)';
+    }
+
+    function closeMobileMenu() {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+        
+        // Reset toggle bars
+        const spans = navToggle.querySelectorAll('span');
+        spans[0].style.transform = 'translateY(-6px)';
+        spans[1].style.opacity = '1';
+        spans[1].style.transform = 'translateY(0)';
+        spans[2].style.transform = 'translateY(6px)';
+    }
+
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            const isExpanded = navMenu.classList.contains('active');
-            navToggle.setAttribute('aria-expanded', isExpanded);
-            
-            // Prevent scrolling when menu is open on mobile
-            if (isExpanded) {
-                body.style.overflow = 'hidden';
+            if (navMenu.classList.contains('active')) {
+                closeMobileMenu();
             } else {
-                body.style.overflow = '';
+                openMobileMenu();
             }
         });
     }
 
-    // Close mobile menu when clicking on a link
+    // Close mobile menu on link click
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            body.style.overflow = '';
+            if (navMenu && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
         });
     });
 
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
+    // ============================================
+    // SMOOTH SCROLL
+    // ============================================
+    
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+            
+            e.preventDefault();
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
                 const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -159,492 +126,199 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Update active navigation link on scroll
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + 100;
-        
-        // Check if user is at bottom of page
-        const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 10;
-        
-        if (isAtBottom) {
-            // If at bottom, activate the last section (contact)
-            navLinks.forEach(link => link.removeAttribute('aria-current'));
-            const contactLink = document.querySelector('.nav-link[href="#contact"]');
-            if (contactLink) {
-                contactLink.setAttribute('aria-current', 'page');
-            }
-            return;
+    // ============================================
+    // HEADER SCROLL EFFECT
+    // ============================================
+    
+    const header = document.querySelector('.header');
+
+    function handleHeaderScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.removeAttribute('aria-current'));
-                if (navLink) {
-                    navLink.setAttribute('aria-current', 'page');
-                }
-            }
-        });
     }
 
-    window.addEventListener('scroll', updateActiveNavLink);
+    window.addEventListener('scroll', throttle(handleHeaderScroll, 50));
+    handleHeaderScroll();
 
-    // Testimonial carousel functionality
-    const testimonialDots = document.querySelectorAll('.nav-dot');
-    const testimonials = [
-        {
-            image: '',
-            logo: 'Vela Coffee Co.',
-            quote: 'ZHL transformed our online store from a basic catalog into an experience that actually converts. Our AOV increased by 167%, and customers keep telling us how much easier it is to shop with us now.',
-            description: 'Rachel is our brand strategy and web design client, where we redefined NovaTech\'s identity and launched a new website that elevated their online presence.',
-            name: 'Marcus Wright',
-            title: 'Founder & CEO'
-        },
-        {
-            image: '',
-            logo: 'Haven Furniture',
-            quote: "We were hemorrhaging customers at checkout. ZHL identified every friction point and rebuilt our flow from the ground up. Abandonment dropped almost dropped by half, and our conversion rate doubled.",
-            description: 'Working with ZHL transformed our digital presence and significantly increased our conversion rates.',
-            name: 'Sophia Patel',
-            title: 'Director of Digital'
-        },
-        {
-            image: '',
-            logo: 'Atlas Outdoors',
-            quote: "Working with ZHL felt like having a secret weapon. They didn't just make our site look incredible, they engineered it to sell. Our conversions are up, and we're finally competing with the big brands.",
-            description: 'Their data-driven approach and creative solutions helped us reach new markets effectively.',
-            name: 'James Rivera',
-            title: 'VP of Marketing'
-        }
-    ];
-
-    let currentTestimonial = 0;
-
-    function updateTestimonial(index) {
-        const testimonial = testimonials[index];
-        const clientLogo = document.querySelector('.client-logo');
-        const blockquote = document.querySelector('.testimonial-text blockquote');
-        const description = document.querySelector('.testimonial-description');
-        const authorName = document.querySelector('.author-name');
-        const authorTitle = document.querySelector('.author-title');
-
-        if (clientLogo) clientLogo.textContent = testimonial.logo;
-        if (blockquote) blockquote.textContent = `"${testimonial.quote}"`;
-        if (description) description.textContent = testimonial.description;
-        if (authorName) authorName.textContent = testimonial.name;
-        if (authorTitle) authorTitle.textContent = testimonial.title;
-
-        // Update active dot
-        testimonialDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
+    // ============================================
+    // STAT COUNTER ANIMATION
+    // ============================================
+    
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                statObserver.unobserve(entry.target);
+            }
         });
-    }
-
-    testimonialDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentTestimonial = index;
-            updateTestimonial(currentTestimonial);
-        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.metric-value').forEach(stat => {
+        statObserver.observe(stat);
     });
+    
+    function animateCounter(element) {
+        const text = element.textContent;
+        const hasPercent = text.includes('%');
+        const hasX = text.includes('x');
+        const isNegative = text.includes('-');
+        const numMatch = text.match(/[\d.]+/);
+        
+        if (!numMatch) return;
+        
+        const target = parseFloat(numMatch[0]);
+        const decimals = hasX ? 1 : 0;
+        const prefix = isNegative ? '-' : '+';
+        const suffix = hasPercent ? '%' : (hasX ? 'x' : '');
+        const duration = 1500;
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+            
+            element.textContent = prefix + current.toFixed(decimals) + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+        
+        element.textContent = prefix + '0' + suffix;
+        requestAnimationFrame(update);
+    }
 
-    // Auto-rotate testimonials every 5 seconds
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        updateTestimonial(currentTestimonial);
-    }, 5000);
-
-    // Form submission handling
+    // ============================================
+    // FORM HANDLING
+    // ============================================
+    
     const contactForm = document.querySelector('.contact-form');
-    const successMessage = document.getElementById('formSuccessMessage');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-
-            // Basic validation
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            // Disable form and show loading state
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Disable button and show loading
             submitBtn.disabled = true;
-
-            // Actually submit to Web3Forms API
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Hide form and show success message with GSAP
-                    if (typeof gsap !== 'undefined' && successMessage) {
-                        // Fade out form
-                        gsap.to(contactForm, {
-                            opacity: 0,
-                            duration: 0.3,
-                            onComplete: () => {
-                                // Show success message
-                                gsap.set(successMessage, { scale: 0.8, opacity: 0 });
-                                successMessage.classList.add('show');
-                                gsap.to(successMessage, {
-                                    scale: 1,
-                                    opacity: 1,
-                                    duration: 0.5,
-                                    ease: "back.out(1.7)"
-                                });
-                            }
-                        });
-                        
-                        // Reset form after 5 seconds
-                        setTimeout(() => {
-                            gsap.to(successMessage, {
-                                scale: 0.8,
-                                opacity: 0,
-                                duration: 0.3,
-                                onComplete: () => {
-                                    successMessage.classList.remove('show');
-                                    contactForm.reset();
-                                    submitBtn.textContent = originalText;
-                                    submitBtn.disabled = false;
-                                    gsap.to(contactForm, {
-                                        opacity: 1,
-                                        duration: 0.3
-                                    });
-                                }
-                            });
-                        }, 5000);
-                    } else {
-                        // Fallback without GSAP
-                        if (successMessage) successMessage.classList.add('show');
-                        setTimeout(() => {
-                            if (successMessage) successMessage.classList.remove('show');
-                            contactForm.reset();
-                            submitBtn.textContent = originalText;
-                            submitBtn.disabled = false;
-                        }, 5000);
-                    }
+            submitBtn.innerHTML = `
+                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32">
+                        <animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                Sending...
+            `;
+            
+            try {
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Success
+                    submitBtn.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        Message Sent
+                    `;
+                    submitBtn.style.background = '#22c55e';
+                    this.reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
                 } else {
-                    throw new Error('Submission failed');
+                    throw new Error('Form submission failed');
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error submitting the form. Please try again.');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-
-    // Pricing card hover effects
-    const pricingCards = document.querySelectorAll('.pricing-card');
-    pricingCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('featured')) {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            }
-        });
-
-        card.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('featured')) {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
-        });
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for fade-in animation
-    const animatedElements = document.querySelectorAll('.service-card, .case-study, .specialty-card, .pricing-card');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-
-    // Case Study Cards - Animate in one at a time
-    const caseStudyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.getAttribute('data-animation-delay') || 0;
+            } catch (error) {
+                // Error
+                submitBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                    Try Again
+                `;
+                submitBtn.style.background = '#ef4444';
+                
                 setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, delay);
-                caseStudyObserver.unobserve(entry.target);
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
             }
         });
-    }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    });
-
-    const caseStudyCards = document.querySelectorAll('.case-study-card');
-    caseStudyCards.forEach(card => {
-        caseStudyObserver.observe(card);
-    });
-
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    const logo = document.querySelector('.logo');
-    const nav = document.querySelector('.nav-menu');
-    const naviLinks = document.querySelectorAll('.nav-link');
-    const navbtn = document.querySelector('.contact-button');
-    const navbtnLink = document.querySelector('.contact-btn');
-    let lastScrollY = window.scrollY;
-
-    function handleScroll() {
-        const currentScrollY = window.scrollY;
-        const isMobile = window.innerWidth <= 768;
-        
-        // Only apply scroll effects on desktop
-        if (!isMobile) {
-            if (currentScrollY > 900) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(1px)';
-                logo.src = 'img/ZHL-logo(light).png';
-                nav.style.background = 'rgba(37, 34, 41, 0.85)';
-                navbtn.style.background = '#fff';
-                
-                naviLinks.forEach(link => {
-                    link.style.color = '#F7F5F0';
-                });
-
-                navbtnLink.style.color = 'rgba(37, 34, 41, 1)';
-            } else {
-                header.style.background = 'transparent';
-                header.style.boxShadow = 'none';
-                logo.src = 'img/ZHL-logo(dark).png';
-                header.style.backdropFilter = 'none';
-                nav.style.background = 'rgba(245, 237, 224, 0.55)';
-                navbtn.style.background = 'rgba(37, 34, 41, 1)';
-                
-                naviLinks.forEach(link => {
-                    link.style.color = '#2c3e50';
-                });
-
-                navbtnLink.style.color = '#fff';
-            }
-        } else {
-            // Reset styles on mobile to prevent conflicts
-            header.style.background = '';
-            header.style.backdropFilter = '';
-            nav.style.background = '';
-            if (navbtn) navbtn.style.background = '';
-            
-            naviLinks.forEach(link => {
-                link.style.color = '';
-            });
-            
-            if (navbtnLink) navbtnLink.style.color = '';
-        }
-
-        lastScrollY = currentScrollY;
     }
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
-
-    // Initial call to set correct state
-    handleScroll();
-
-    // Statistics counter animation
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-number, .specialty-card h3');
-        
-        counters.forEach(counter => {
-            const target = counter.textContent;
-            const isPercentage = target.includes('%');
-            const isDollar = target.includes('$');
-            const isHash = target.includes('#');
-            
-            let number = parseInt(target.replace(/[^\d]/g, ''));
-            if (isNaN(number)) return;
-
-            let current = 0;
-            const increment = number / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= number) {
-                    current = number;
-                    clearInterval(timer);
-                }
-
-                let displayValue = Math.floor(current);
-                if (isDollar) {
-                    displayValue = '$' + displayValue + (number >= 1000000 ? 'M' : '');
-                } else if (isPercentage) {
-                    displayValue = displayValue + '%';
-                } else if (isHash) {
-                    displayValue = '#' + displayValue;
-                }
-
-                counter.textContent = displayValue;
-            }, 20);
-        });
-    }
-
-    // Trigger counter animation when specialty section is visible
-    const specialtySection = document.querySelector('.specialties');
-    if (specialtySection) {
-        const specialtyObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    specialtyObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        specialtyObserver.observe(specialtySection);
-    }
-
-    // Keyboard navigation support
+    // ============================================
+    // KEYBOARD NAVIGATION
+    // ============================================
+    
     document.addEventListener('keydown', function(e) {
-        // ESC key closes mobile menu
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
+        // ESC closes mobile menu
+        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+            closeMobileMenu();
             navToggle.focus();
-            body.style.overflow = '';
-        }
-
-        // Arrow keys for testimonial navigation
-        if (e.target.classList.contains('nav-dot')) {
-            let newIndex = currentTestimonial;
-            
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                newIndex = currentTestimonial > 0 ? currentTestimonial - 1 : testimonials.length - 1;
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                newIndex = currentTestimonial < testimonials.length - 1 ? currentTestimonial + 1 : 0;
-            }
-            
-            if (newIndex !== currentTestimonial) {
-                currentTestimonial = newIndex;
-                updateTestimonial(currentTestimonial);
-                testimonialDots[currentTestimonial].focus();
-            }
         }
     });
 
-    // Add loading animation
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
+    // ============================================
+    // PAGE LOAD ANIMATION
+    // ============================================
     
     window.addEventListener('load', () => {
-        document.body.style.opacity = '1';
+        document.body.classList.add('loaded');
     });
-
-    // Touch gesture support for sliders on mobile
-    function addSwipeSupport(container) {
-        if (!container) return;
-        
-        let startX = 0;
-        let startY = 0;
-        let scrollLeft = 0;
-        let isDown = false;
-        let isHorizontalSwipe = false;
-
-        container.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - container.offsetLeft;
-            startY = e.touches[0].pageY;
-            scrollLeft = container.scrollLeft;
-            isHorizontalSwipe = false;
-        });
-
-        container.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            
-            const x = e.touches[0].pageX - container.offsetLeft;
-            const y = e.touches[0].pageY;
-            const walkX = Math.abs(x - startX);
-            const walkY = Math.abs(y - startY);
-            
-            // Determine if this is a horizontal or vertical swipe
-            if (!isHorizontalSwipe && walkX > 5 || walkY > 5) {
-                isHorizontalSwipe = walkX > walkY;
-            }
-            
-            // Only prevent default and scroll horizontally if it's a horizontal swipe
-            if (isHorizontalSwipe) {
-                e.preventDefault();
-                const walk = (x - startX) * 2;
-                container.scrollLeft = scrollLeft - walk;
-            }
-        });
-
-        container.addEventListener('touchend', () => {
-            isDown = false;
-            isHorizontalSwipe = false;
-        });
-    }
-
-    // Add swipe support to sliders
-    const servicesGrid = document.querySelector('.services-grid');
-    const caseStudiesGrid = document.querySelector('.case-studies-grid');
     
-    if (window.innerWidth <= 768) {
-        addSwipeSupport(servicesGrid);
-        addSwipeSupport(caseStudiesGrid);
+    // Fallback if load event already fired
+    if (document.readyState === 'complete') {
+        document.body.classList.add('loaded');
     }
-
-    // Reapply on window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768) {
-            addSwipeSupport(servicesGrid);
-            addSwipeSupport(caseStudiesGrid);
-        }
-    });
 });
 
-// Performance optimization: Debounce scroll handler
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
     };
+}
+
+// ============================================
+// SERVICES CAROUSEL DOTS
+// ============================================
+
+const servicesGrid = document.querySelector('.services-grid');
+const dots = document.querySelectorAll('.carousel-dots .dot');
+
+if (servicesGrid && dots.length > 0) {
+    servicesGrid.addEventListener('scroll', () => {
+        const scrollLeft = servicesGrid.scrollLeft;
+        const cardWidth = servicesGrid.querySelector('.service-card').offsetWidth;
+        const gap = 16; // var(--space-md)
+        const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === activeIndex);
+        });
+    });
 }

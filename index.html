@@ -2,490 +2,444 @@
 <html lang="en">
 
 <head>
-    <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Primary Meta Tags -->
-    <title>Zero Hour Labs | Conversion-Focused Web Design & Development for Ecommerce</title>
-    <meta name="title" content="Zero Hour Labs | Conversion-Focused Web Design & Development for Ecommerce">
+    <title>ZHL - Zero Hour Labs | Ecommerce That Converts</title>
     <meta name="description"
-        content="ZHL specializes in high-converting web design and development for ecommerce brands. We build beautiful, performance-driven websites that turn visitors into customers.">
-    <meta name="keywords"
-        content="web design, ecommerce development, conversion optimization, digital agency, web development">
-    <meta name="author" content="Zero Hour Labs">
-    <link rel="canonical" href="https://zerohourlabs.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zerohourlabs.com/">
-    <meta property="og:title" content="Zero Hour Labs | Conversion-Focused Web Design & Development">
-    <meta property="og:description"
-        content="We build high-converting websites for ecommerce brands. Get results that matter.">
-    <meta property="og:image" content="img/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1500">
-    <meta property="og:site_name" content="Zero Hour Labs">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://zerohourlabs.com/">
-    <meta name="twitter:title" content="Zero Hour Labs | Conversion-Focused Web Design & Development">
-    <meta name="twitter:description"
-        content="We build high-converting websites for ecommerce brands. Get results that matter.">
-    <meta name="twitter:image" content="img/og-image.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
-    <meta name="theme-color" content="#252229">
+        content="Zero Hour Labs builds high-converting ecommerce experiences. We design and develop websites that turn browsers into buyers.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
-    <!-- Stylesheet -->
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Zero Hour Labs",
-        "alternateName": "ZHL",
-        "url": "https://zerohourlabs.com",
-        "logo": "https://zerohourlabs.com/img/ZHL-logo(dark).png",
-        "description": "Conversion-focused web design and development agency for ecommerce brands",
-    }
-    </script>
-
-    <!-- Instantly -->
-    <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="myx5qdp9NbAaC7CY"
-        data-version="062024"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV2SBXPQWT"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-CV2SBXPQWT');
-    </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="nav" aria-label="Main navigation">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="#home" aria-label="ZHL - Zero Hour Labs home">
+                    <img src="img/ZHL-Logo(dark).png" alt="ZHL - Zero Hour Labs" class="logo">
+                </a>
+            </div>
             <div class="nav-menu" id="nav-menu">
-                <div class="nav-brand">
-                    <a href="#home" aria-label="ZHL - Zero Hour Labs home"><img src="img/ZHL-logo(light).png"
-                            alt="ZHL - Zero Hour Labs" class="logo"></a>
-                </div>
-                <div class="nav-center">
-                    <a href="#services" class="nav-link">SERVICES</a>
-                    <a href="#portfolio" class="nav-link">CASE STUDIES</a>
-                    <a href="#pricing" class="nav-link">PRICING</a>
-                </div>
-                <div class="contact-button">
-                    <a href="#contact" class="nav-link contact-btn">CONTACT</a>
-                </div>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#contact" class="nav-link m-only">Contact</a>
             </div>
-            <div class="nav-mobile">
-                <a href="#home" aria-label="ZHL - Zero Hour Labs home"><img src="img/ZHL-logo(light).png"
-                        alt="ZHL - Zero Hour Labs" class="logo-mobile"></a>
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
-                    aria-controls="nav-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-primary">Start a Project</a>
             </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
     <main id="main-content">
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <!-- Blinds Overlay - Desktop (8 horizontal blinds) -->
-            <div class="hero-blinds hero-blinds-desktop">
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-            </div>
+            <!-- ASCII Background -->
+            <div class="ascii-container" id="ascii-container"></div>
+            <video id="hero-video" autoplay muted loop playsinline>
+                <source src="video/flight.mp4" type="video/mp4">
+            </video>
 
-            <!-- Blinds Overlay - Mobile (4 vertical blinds) -->
-            <div class="hero-blinds hero-blinds-mobile">
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-                <div class="blind"></div>
-            </div>
-
+            <!-- Content -->
             <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for Q1 2026
+                </div>
                 <h1 class="hero-title">
-                    Where Vision Meets Conversion
+                    Building ecommerce<br>
+                    <span class="hero-title-accent">that actually converts.</span>
                 </h1>
-                <p class="hero-subtitle">Strategic design and development that transforms your online presence into a
-                    conversion powerhouse.</p>
-                <a href="#contact" class="cta-button">Work with us</a>
+                <p class="hero-subtitle">
+                    Design and development for brands ready to stop leaving money on the table.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-dark btn-lg btn-mobile-light">
+                        Get in Touch
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#work" class="btn btn-ghost btn-lg">See Our Work</a>
+                </div>
+            </div>
+            <!-- Brands -->
+            <div class="hero-brands">
+                <p class="brands-label">Trusted by industry leaders</p>
+                <div class="brands-carousel">
+                    <div class="brands-track">
+                        <!-- First set of logos -->
+                        <div class="brand-logo"><img src="img/logos/logo-sk.png" alt="SK"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-a.png" alt="A"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-c.png" alt="C"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-p.png" alt="P"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-r.png" alt="R"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-v.png" alt="V"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-t.png" alt="T"></div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="brand-logo"><img src="img/logos/logo-sk.png" alt="SK"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-a.png" alt="A"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-c.png" alt="C"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-p.png" alt="P"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-r.png" alt="R"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-v.png" alt="V"></div>
+                        <div class="brand-logo"><img src="img/logos/logo-t.png" alt="T"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem/Solution Section -->
+        <section class="problem-section">
+            <div class="container">
+                <div class="problem-content">
+                    <span class="section-label">The Problem</span>
+                    <h2 class="section-title">Your website looks great.<br><span class="text-accent">But it doesn't
+                            sell.</span></h2>
+                    <p class="section-desc">
+                        Most ecommerce sites are built to look good in a portfolio. We build them to perform in the real
+                        world—where every click, scroll, and second matters.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="services" aria-labelledby="services-heading">
-            <div class="services-container">
+        <section id="services" class="services">
+            <div class="container">
                 <div class="services-header">
-                    <div class="services-header-left">
-                        <span class="section-label" aria-hidden="true">SERVICES</span>
-                        <h2 id="services-heading">What we offer</h2>
+                    <div class="services-header-text">
+                        <span class="section-label">What We Do</span>
+                        <h2 class="section-title">End-to-end ecommerce,<br>obsessed with outcomes.</h2>
                     </div>
-                    <a href="#contact" class="view-all-btn">Get the Details</a>
+                    <a href="#contact" class="btn btn-dark">Start a Conversation →</a>
                 </div>
 
                 <div class="services-grid">
                     <article class="service-card">
-                        <div class="service-icon-box" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#E8E4DA"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M174.63,81.37a80,80,0,1,0-93.26,93.26,80,80,0,1,0,93.26-93.26ZM224,160c0,1.52-.07,3-.18,4.51l-50-50A80,80,0,0,0,176,98,64.11,64.11,0,0,1,224,160Zm-13.47,39.21L157.91,146.6a80.5,80.5,0,0,0,9.93-15.44L219.7,183A64,64,0,0,1,210.53,199.21ZM183,219.7l-51.86-51.86a80.5,80.5,0,0,0,15.44-9.93l52.61,52.62A64,64,0,0,1,183,219.7ZM45.47,56.79,98.09,109.4a80.5,80.5,0,0,0-9.93,15.44L36.3,73A64,64,0,0,1,45.47,56.79ZM73,36.3l51.86,51.86a80.5,80.5,0,0,0-15.44,9.93L56.79,45.47A64,64,0,0,1,73,36.3ZM160,96a64.07,64.07,0,0,1-64,64A64.07,64.07,0,0,1,160,96Zm-2-16a80,80,0,0,0-16.49,2.13l-50-50C93,32.07,94.48,32,96,32A64.11,64.11,0,0,1,158,80.05ZM32,96c0-1.52.07-3,.18-4.51l50,50A80,80,0,0,0,80.05,158,64.11,64.11,0,0,1,32,96ZM98,176a80,80,0,0,0,16.49-2.13l50,50c-1.49.11-3,.18-4.51.18A64.11,64.11,0,0,1,98,176Z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3>Web Design</h3>
-                        <p>Stunning, conversion-focused websites that captivate visitors and turn them into customers.
-                            Designed with purpose and performance in mind.</p>
+                        <div class="service-number">01</div>
+                        <h3 class="service-title">Conversion-Focused Design</h3>
+                        <p class="service-desc">
+                            Every design decision is backed by data and psychology. We craft interfaces that guide
+                            visitors toward purchase—without feeling pushy.
+                        </p>
+                        <ul class="service-list">
+                            <li>UI/UX Design</li>
+                            <li>Landing Pages</li>
+                            <li>Full Site Redesigns</li>
+                        </ul>
                     </article>
 
                     <article class="service-card">
-                        <div class="service-icon-box" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#E8E4DA"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>Fast, secure, and scalable development that brings your vision to life. We build digital
-                            experiences
-                            that perform flawlessly and drive real results.</p>
+                        <div class="service-number">02</div>
+                        <h3 class="service-title">Custom Development</h3>
+                        <p class="service-desc">
+                            Fast, scalable, and built right the first time. We develop on platforms you already use—or
+                            build something custom when off-the-shelf won't cut it.
+                        </p>
+                        <ul class="service-list">
+                            <li>Shopify & Shopify Plus</li>
+                            <li>Headless Commerce</li>
+                            <li>Custom Integrations</li>
+                        </ul>
                     </article>
 
                     <article class="service-card">
-                        <div class="service-icon-box" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#E8E4DA"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3>Conversion Optimization</h3>
-                        <p>Data-driven strategies that transform browsers into buyers. We optimize every element of your
-                            site to
-                            maximize conversions and revenue.</p>
+                        <div class="service-number">03</div>
+                        <h3 class="service-title">Conversion Optimization</h3>
+                        <p class="service-desc">
+                            Already have traffic? We'll find the leaks in your funnel and fix them. Data-driven testing
+                            that compounds into serious revenue gains.
+                        </p>
+                        <ul class="service-list">
+                            <li>CRO Audits</li>
+                            <li>A/B Testing Programs</li>
+                            <li>Analytics Setup</li>
+                        </ul>
                     </article>
 
                     <article class="service-card">
-                        <div class="service-icon-box" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#E8E4DA"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M230.14,58.87A8,8,0,0,0,224,56H62.68L56.6,22.57A8,8,0,0,0,48.73,16H24a8,8,0,0,0,0,16h18L67.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,160,204a28,28,0,1,0,28-28H91.17a8,8,0,0,1-7.87-6.57L80.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,230.14,58.87ZM104,204a12,12,0,1,1-12-12A12,12,0,0,1,104,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,200,204Zm4-74.57A8,8,0,0,1,196.1,136H77.22L65.59,72H214.41Z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3>eCommerce Solutions</h3>
-                        <p>Powerful online stores designed to sell. We create seamless shopping experiences that
-                            increase
-                            average order value and customer lifetime value.</p>
+                        <div class="service-number">04</div>
+                        <h3 class="service-title">Ongoing Partnership</h3>
+                        <p class="service-desc">
+                            Ecommerce isn't set-and-forget. We offer retained partnerships for brands that want
+                            continuous improvement and a team that knows their business inside out.
+                        </p>
+                        <ul class="service-list">
+                            <li>Dedicated Team</li>
+                            <li>Monthly Optimization</li>
+                            <li>Priority Support</li>
+                        </ul>
                     </article>
+                </div>
+
+                <div class="carousel-dots" aria-hidden="true">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
                 </div>
             </div>
         </section>
 
-        <!-- Brands Section -->
-        <section class="brands" aria-labelledby="brands-heading">
-            <div class="brands-header">
-                <span class="section-label" aria-hidden="true">BRAND COLLABORATIONS</span>
-                <h2 id="brands-heading">Brands that trust us</h2>
-            </div>
-            <div class="brands-logos">
-                <div class="brand-logo">
-                    <img src="img/logos/logo-sk.png" alt="SK brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-a.png" alt="A brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-c.png" alt="C brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-p.png" alt="P brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-r.png" alt="R brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-v.png" alt="V brand logo">
-                </div>
-                <div class="brand-logo">
-                    <img src="img/logos/logo-t.png" alt="T brand logo">
-                </div>
-            </div>
-        </section>
-
-        <!-- Case Studies Section -->
-        <section id="portfolio" class="case-studies" aria-labelledby="case-studies-heading">
-            <div class="case-studies-container">
-                <div class="case-studies-header">
-                    <span class="section-label" aria-hidden="true">SOME OF OUR WORK</span>
-                    <h2 id="case-studies-heading">Case Studies</h2>
+        <!-- Results/Work Section -->
+        <section id="work" class="work-section">
+            <div class="container">
+                <div class="work-header">
+                    <span class="section-label">Results</span>
+                    <h2 class="section-title">What happens when<br><span class="text-accent">conversion is the
+                            priority.</span></h2>
                 </div>
 
-                <div class="case-studies-grid">
-                    <div class="case-study-card" data-animation-delay="0">
-                        <div class="case-study-image">
-                            <img src="img/case-studies/cs-2.png" alt="Supplements mockup">
+                <div class="testimonials-grid">
+                    <article class="testimonial-card testimonial-featured">
+                        <div class="testimonial-metric">
+                            <span class="metric-value">+167%</span>
+                            <span class="metric-label">AOV Increase</span>
                         </div>
-                        <div class="case-study-info">
-                            <span class="case-label">RITUAL</span>
-                            <h3>Optimizing Wellness for Maximum Conversions</h3>
-                            <p>Through strategic UX optimization and conversion testing, we helped Ritual turn their
-                                existing platform into a subscription-generating machine.</p>
-                            <div class="case-stats">
-                                <div class="stat">
-                                    <span class="stat-number">127%</span>
-                                    <span class="stat-label">Lift in subscription conversions</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">58%</span>
-                                    <span class="stat-label">Average order value increase</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="case-study-card" data-animation-delay="100">
-                        <div class="case-study-image">
-                            <img src="img/case-studies/cs-1.png" alt="Website mockup">
-                        </div>
-                        <div class="case-study-info">
-                            <span class="case-label">HOMECOURT</span>
-                            <h3>Transforming Luxury Home Care Into Revenue</h3>
-                            <p>Through strategic UX optimization and conversion testing, we helped Homecourt turn their premium home care experience
-                            into a revenue-driving powerhouse.</p>
-                            <div class="case-stats">
-                                <div class="stat">
-                                    <span class="stat-number">65%</span>
-                                    <span class="stat-label">Increase in conversion rate</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">78%</span>
-                                    <span class="stat-label">Growth in repeat purchases</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="case-study-card" data-animation-delay="200">
-                        <div class="case-study-image">
-                            <img src="img/case-studies/cs-3.png" alt="Fashion website mockup">
-                        </div>
-                        <div class="case-study-info">
-                            <span class="case-label">AKIRA</span>
-                            <h3>Fashion Meets Function</h3>
-                            <p>Akira's site blends cutting-edge design with conversion-focused development, driving online growth through a seamless
-                            shopping experience that turns visitors into loyal customers.</p>
-                            <div class="case-stats">
-                                <div class="stat">
-                                    <span class="stat-number">89%</span>
-                                    <span class="stat-label">Increase in conversions</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">3.2x</span>
-                                    <span class="stat-label">Increase in site engagement</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="case-study-card" data-animation-delay="300">
-                        <div class="case-study-image">
-                            <img src="img/case-studies/cs-4.png" alt="Tech website mockup">
-                        </div>
-                        <div class="case-study-info">
-                            <span class="case-label">TURTLEBOX</span>
-                            <h3>Optimizing Audio Excellence</h3>
-                            <p>Turtlebox's e-commerce experience with strategic conversion optimization that amplified
-                                their sales
-                                performance.</p>
-                            <div class="case-stats">
-                                <div class="stat">
-                                    <span class="stat-number">120%</span>
-                                    <span class="stat-label">Growth in online sales</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">47%</span>
-                                    <span class="stat-label">Reduction in cart abandonment</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="reviews" class="testimonials" aria-labelledby="testimonials-heading">
-            <div class="testimonials-bg-text" aria-hidden="true">TESTIMONIALS</div>
-            <div class="testimonial-content">
-                <div class="testimonial-text">
-                    <div class="client-logo">Vela Coffee Co.</div>
-                    <blockquote>
-                        <p>
+                        <blockquote class="testimonial-quote">
                             "ZHL transformed our online store from a basic catalog into an experience that actually
                             converts. Our AOV increased by 167%, and customers keep telling us how much easier it is to
                             shop with us now."
-                        </p>
-                    </blockquote>
-                    <footer class="testimonial-author">
-                        <strong class="author-name">Marcus Wright</strong><br>
-                        <span class="author-title">Founder & CEO</span>
-                    </footer>
+                        </blockquote>
+                        <footer class="testimonial-author">
+                            <div class="author-info">
+                                <strong class="author-name">Marcus Wright</strong>
+                                <span class="author-title">Founder & CEO, Vela Coffee Co.</span>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-metric">
+                            <span class="metric-value">-50%</span>
+                            <span class="metric-label">Cart Abandonment</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "We were hemorrhaging customers at checkout. ZHL identified every friction point and rebuilt
+                            our flow from the ground up. Cart abandonment dropped by half, and our conversion rate
+                            doubled."
+                        </blockquote>
+                        <footer class="testimonial-author">
+                            <div class="author-info">
+                                <strong class="author-name">Sophia Patel</strong>
+                                <span class="author-title">Director of Digital, Haven Furniture</span>
+                            </div>
+                        </footer>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-metric">
+                            <span class="metric-value">3.2x</span>
+                            <span class="metric-label">Revenue Growth</span>
+                        </div>
+                        <blockquote class="testimonial-quote">
+                            "We tripled our monthly revenue within six months of the new site going live. ZHL didn't
+                            just build us a website—they built us a revenue engine."
+                        </blockquote>
+                        <footer class="testimonial-author">
+                            <div class="author-info">
+                                <strong class="author-name">David Kim</strong>
+                                <span class="author-title">CEO, Stitch & Stone</span>
+                            </div>
+                        </footer>
+                    </article>
                 </div>
             </div>
-            <nav class="testimonial-nav" aria-label="Testimonial navigation">
-                <button class="nav-dot active" aria-label="View testimonial 1" aria-current="true"></button>
-                <button class="nav-dot" aria-label="View testimonial 2"></button>
-                <button class="nav-dot" aria-label="View testimonial 3"></button>
-            </nav>
+        </section>
+
+        <!-- How We Work Section -->
+        <section class="process-section">
+            <div class="container">
+                <div class="process-header">
+                    <span class="section-label">How We Work</span>
+                    <h2 class="section-title">Simple process.<br>Serious results.</h2>
+                </div>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Discovery</h3>
+                        <p class="step-desc">We dig into your analytics, customer behavior, and business goals. No
+                            assumptions—just data.</p>
+                    </div>
+                    <div class="process-connector"></div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Strategy</h3>
+                        <p class="step-desc">We map out the highest-impact changes and create a roadmap that prioritizes
+                            revenue.</p>
+                    </div>
+                    <div class="process-connector"></div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Execute</h3>
+                        <p class="step-desc">Design, develop, test, iterate. We move fast without cutting corners.</p>
+                    </div>
+                    <div class="process-connector"></div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Optimize</h3>
+                        <p class="step-desc">Launch is just the beginning. We measure, learn, and continuously improve.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Pricing Section -->
-        <section id="pricing" class="pricing" aria-labelledby="pricing-heading">
-            <div class="pricing-container">
+        <section id="pricing" class="pricing">
+            <div class="container">
                 <div class="pricing-header">
-                    <span class="section-label" aria-hidden="true">PRICING</span>
-                    <h2 id="pricing-heading">How We Work Together</h2>
+                    <span class="section-label">Engagement Models</span>
+                    <h2 class="section-title">Two ways to work together.</h2>
+                    <p class="pricing-subtitle">Whether you need a single high-impact project or ongoing optimization,
+                        we've got you covered.</p>
                 </div>
 
                 <div class="pricing-grid">
                     <article class="pricing-card">
-                        <div class="pricing-header-content">
-                            <h3>Project-Based</h3>
-                            <p class="pricing-tagline">Fixed scope, focused results. Ideal when you have a specific goal
-                                and want expert execution.</p>
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-tier">Project</h3>
+                            <p class="pricing-tagline">One-time engagements with defined scope and deliverables.</p>
                         </div>
 
-                        <div class="pricing-best-for">
-                            <h4>Ideal For:</h4>
-                            <ul class="best-for-list">
-                                <li>Site launches & redesigns</li>
-                                <li>Landing page builds</li>
-                                <li>One-time optimizations</li>
-                            </ul>
+                        <div class="pricing-details">
+                            <div class="pricing-best-for">
+                                <h4>Best for:</h4>
+                                <ul>
+                                    <li>Site launches & redesigns</li>
+                                    <li>Landing page campaigns</li>
+                                    <li>Platform migrations</li>
+                                    <li>Conversion audits</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-includes">
+                                <h4>What's included:</h4>
+                                <ul>
+                                    <li>Fixed timeline & budget</li>
+                                    <li>Complete design & development</li>
+                                    <li>Performance benchmarking</li>
+                                    <li>30-day post-launch support</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="pricing-features">
-                            <h4>Key Features:</h4>
-                            <ul class="features">
-                                <li>Defined scope & timeline</li>
-                                <li>Full design & development</li>
-                                <li>Performance reporting</li>
-                            </ul>
-                        </div>
-
-                        <a href="#contact" class="pricing-btn">Start a Project</a>
+                        <a href="#contact" class="btn btn-outline btn-block">Discuss Your Project</a>
                     </article>
 
-                    <article class="pricing-card featured">
-                        <div class="pricing-header-content">
-                            <h3>Ongoing Partnership</h3>
-                            <p class="pricing-tagline">A dedicated team that never stops working. Ideal for for
-                                businesses that want to stay ahead.</p>
+                    <article class="pricing-card pricing-card-featured">
+                        <div class="pricing-badge">Recommended</div>
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-tier">Partnership</h3>
+                            <p class="pricing-tagline">Ongoing collaboration for continuous growth and optimization.</p>
                         </div>
 
-                        <div class="pricing-best-for">
-                            <h4>Ideal For:</h4>
-                            <ul class="best-for-list">
-                                <li>E-commerce brands</li>
-                                <li>Growing businesses</li>
-                                <li>Continuous improvement</li>
-                            </ul>
+                        <div class="pricing-details">
+                            <div class="pricing-best-for">
+                                <h4>Best for:</h4>
+                                <ul>
+                                    <li>Scaling ecommerce brands</li>
+                                    <li>Continuous optimization</li>
+                                    <li>Long-term growth strategy</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-includes">
+                                <h4>What's included:</h4>
+                                <ul>
+                                    <li>Dedicated account team</li>
+                                    <li>Monthly A/B testing</li>
+                                    <li>Strategy sessions</li>
+                                    <li>Priority support & response</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="pricing-features">
-                            <h4>Key Features:</h4>
-                            <ul class="features">
-                                <li>A/B testing & optimization</li>
-                                <li>Priority support</li>
-                                <li>Monthly strategy sessions</li>
-                            </ul>
-                        </div>
-
-                        <a href="#contact" class="pricing-btn">Let's Talk Partnership</a>
+                        <a href="#contact" class="btn btn-light btn-block">Explore Partnership</a>
                     </article>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact" aria-labelledby="contact-heading">
-            <div class="contact-content">
-                <div class="contact-text">
-                    <h2 id="contact-heading">Let's<br><span class="highlight">Talk!</span></h2>
-                </div>
-                <div class="contact-form-container">
-                    <!-- Success Message -->
-                    <div class="form-success-message" id="formSuccessMessage">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 256 256">
-                            <path
-                                d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
-                            </path>
-                        </svg>
-                        <h3>Message Sent!</h3>
-                        <p>Thank you for reaching out. We'll get back to you soon.</p>
-                    </div>
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-content">
+                        <span class="section-label">Let's Talk</span>
+                        <h2 class="contact-title">Ready to turn visitors<br>into customers?</h2>
+                        <p class="contact-desc">Tell us about your project. We'll get back to you within 24 hours to
+                            schedule a discovery call.</p>
 
-                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-
-                        <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f" />
-
-                        <div class="form-group-container">
-                            <div class="form-group">
-                                <label for="name" class="form-label">Name</label>
-                                <input id="name" name="name" class="form-input" placeholder="Your name" type="text" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email</label>
-                                <input id="email" name="email" class="form-input" placeholder="Your email"
-                                    type="email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-textarea" id="message" name="message" placeholder="Your message"
-                                    rows="5"></textarea>
+                        <div class="contact-info">
+                            <div class="contact-info-item">
+                                <span class="contact-info-label">Email</span>
+                                <a href="mailto:hello@zerohourlabs.com"
+                                    class="contact-info-value">hello@zerohourlabs.com</a>
                             </div>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
+                            <input type="hidden" name="subject" value="New Project Inquiry from ZHL Website">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" name="company" placeholder="Your company">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Tell us about your project</label>
+                                <textarea id="message" name="message" placeholder="What are you looking to achieve?"
+                                    rows="4" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark btn-block btn-lg">
+                                Send Message
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -493,22 +447,26 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="#home" aria-label="ZHL - Zero Hour Labs home">
-                    <img src="img/ZHL-logo(light).png" alt="ZHL - Zero Hour Labs" class="logo">
-                </a>
-            </div>
-            <div class="footer-info">
-                <p>©Zero Hour Labs</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#home" aria-label="ZHL - Zero Hour Labs home">
+                        <img src="img/ZHL-Logo(dark).png" alt="ZHL - Zero Hour Labs" class="logo">
+                    </a>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 Zero Hour Labs. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- GSAP and ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="ascii-hero.js"></script>
 </body>
 
 </html>
