@@ -1491,10 +1491,6 @@ body.loaded {
         margin-bottom: var(--space-md);
     }
 
-    .section-title br {
-        display: none;
-    }
-
     /* Problem Section */
     .problem-section {
         padding: var(--space-3xl) 0;
@@ -1870,12 +1866,21 @@ body.loaded {
         font-size: 2rem;
     }
 
+    .hero-content {
+        margin-top: 75px;
+    }
+
     .hero-title {
         font-size: 3rem;
     }
 
-    .hero-subtitle {
+    .ascii-container {
         display: none;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+        line-height: 110%;
     }
 
     .hero-cta .btn-ghost {
@@ -1883,7 +1888,7 @@ body.loaded {
     }
 
     .section-title {
-        font-size: 1.625rem;
+        font-size: 2.25rem;
     }
 
     .contact-title {
