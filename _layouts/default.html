@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | ZHL Blog</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+
+    <!-- SEO Tag (generates meta tags for search engines) -->
+    {% seo %}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}">
+    {% if page.layout == 'post' %}
+    <link rel="stylesheet" href="{{ '/css/blog.css' | relative_url }}">
+    {% endif %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/img/favicon.png' | relative_url }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="{{ '/index.html' | relative_url }}" aria-label="ZHL - Zero Hour Labs home">
+                    <img src="{{ '/img/ZHL-logo(dark).png' | relative_url }}" alt="ZHL - Zero Hour Labs" class="logo">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="{{ '/index.html' | relative_url }}#services" class="nav-link">Services</a>
+                <a href="{{ '/index.html' | relative_url }}#work" class="nav-link">Work</a>
+                <a href="{{ '/index.html' | relative_url }}#pricing" class="nav-link">Pricing</a>
+                <a href="{{ '/index.html' | relative_url }}#contact" class="nav-link m-only">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="{{ '/index.html' | relative_url }}#contact" class="btn btn-primary">Start a Project</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="{{ '/index.html' | relative_url }}" aria-label="ZHL - Zero Hour Labs home">
+                        <img src="{{ '/img/ZHL-logo(dark).png' | relative_url }}" alt="ZHL - Zero Hour Labs" class="logo">
+                    </a>
+                </div>
+                <div class="footer-info">
+                    <p>© {{ 'now' | date: "%Y" }} Zero Hour Labs. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ '/script.js' | relative_url }}"></script>
+</body>
+
+</html>

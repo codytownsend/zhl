@@ -1,0 +1,30 @@
+# Site settings
+title: ZHL - Zero Hour Labs
+description: "Conversion-focused web design and development"
+url: "https://codytownsend.github.io"
+baseurl: "/zhl"
+
+# Build settings
+markdown: kramdown
+permalink: /blogs/:title/
+
+# Plugins (this is the key part for your sitemap!)
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+
+# Default front matter for posts
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "ZHL"
