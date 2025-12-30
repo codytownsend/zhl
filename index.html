@@ -534,10 +534,13 @@
     <script src="ascii-hero.js"></script>
 
     <script>
-        window.addEventListener("web3formSubmissionSuccess", function () {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: "lead_submit"
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.querySelector(".contact-form");
+            if (!form) return;
+
+            form.addEventListener("submit", function () {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "lead_submit" });
             });
         });
     </script>
