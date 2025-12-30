@@ -532,6 +532,15 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script src="ascii-hero.js"></script>
+
+    <script>
+        window.addEventListener("web3formSubmissionSuccess", function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "lead_submit"
+            });
+        });
+    </script>
 </body>
 
 </html>
