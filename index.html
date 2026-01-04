@@ -555,7 +555,7 @@
     <script src="ascii-hero.js"></script>
 
     <!-- ==========================================
-        1. TIMED POPUP (First touchpoint)
+        1. TIMED POPUP (Multi-step)
         ========================================== -->
     <div id="zhl-popup-timed" class="zhl-popup" role="dialog" aria-modal="true" aria-labelledby="zhl-popup-timed-title">
         <div class="zhl-popup-backdrop"></div>
@@ -569,40 +569,94 @@
             </button>
 
             <div class="zhl-popup-content">
-                <span class="zhl-popup-label">Quick Question</span>
+                <!-- Step Indicator -->
+                <div class="zhl-step-indicator">
+                    <span class="zhl-step active" data-step="1">1</span>
+                    <span class="zhl-step-line"></span>
+                    <span class="zhl-step" data-step="2">2</span>
+                </div>
 
-                <h2 id="zhl-popup-timed-title" class="zhl-popup-title">
-                    Looking to improve<br>
-                    <span class="zhl-title-accent">your site's conversions?</span>
-                </h2>
+                <!-- Step 1: Email -->
+                <div class="zhl-popup-step" data-step="1">
+                    <span class="zhl-popup-label">Quick Question</span>
 
-                <p class="zhl-popup-desc">
-                    Tell us about your project and we'll show you exactly how we can help. No fluff, just actionable
-                    next
-                    steps.
-                </p>
+                    <h2 id="zhl-popup-timed-title" class="zhl-popup-title">
+                        Looking to improve<br>
+                        <span class="zhl-title-accent">your site's conversions?</span>
+                    </h2>
 
-                <form id="zhl-popup-timed-form" class="zhl-popup-form" action="https://api.web3forms.com/submit"
-                    method="POST">
-                    <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
-                    <input type="hidden" name="subject" value="Quick Inquiry (Timed Popup) - Zero Hour Labs">
-                    <input type="hidden" name="from_name" value="ZHL Timed Popup Lead">
-                    <input type="checkbox" name="botcheck" style="display: none;">
+                    <p class="zhl-popup-desc">
+                        Tell us about your project and we'll show you exactly how we can help. No fluff, just actionable
+                        next steps.
+                    </p>
 
-                    <div class="zhl-form-group">
-                        <input type="email" name="email" placeholder="Enter your email" required>
+                    <div class="zhl-popup-form-step">
+                        <div class="zhl-form-group">
+                            <input type="email" id="zhl-timed-email" placeholder="Enter your email" required>
+                        </div>
+
+                        <button type="button" class="zhl-popup-btn zhl-next-step-btn" data-next="2">
+                            <span class="btn-text">Continue</span>
+                            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
+                </div>
 
-                    <button type="submit" class="zhl-popup-btn">
-                        <span class="btn-text">Get Started</span>
-                        <span class="btn-loading" style="display: none;">Sending...</span>
-                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                        </svg>
-                    </button>
-                </form>
+                <!-- Step 2: Details -->
+                <div class="zhl-popup-step" data-step="2" style="display: none;">
+                    <span class="zhl-popup-label">Almost There</span>
+
+                    <h2 class="zhl-popup-title">
+                        Tell us a bit<br>
+                        <span class="zhl-title-accent">about yourself.</span>
+                    </h2>
+
+                    <p class="zhl-popup-desc">
+                        Help us personalize our response to your needs.
+                    </p>
+
+                    <form id="zhl-popup-timed-form" class="zhl-popup-form" action="https://api.web3forms.com/submit"
+                        method="POST">
+                        <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
+                        <input type="hidden" name="subject" value="">
+                        <input type="hidden" name="from_name" value="ZHL Lead">
+                        <input type="hidden" name="email" id="zhl-timed-email-hidden" value="">
+                        <input type="checkbox" name="botcheck" style="display: none;">
+
+                        <div class="zhl-form-group">
+                            <input type="text" name="name" placeholder="Your name *" required>
+                        </div>
+
+                        <div class="zhl-form-group">
+                            <input type="text" name="company" placeholder="Business name (optional)">
+                        </div>
+
+                        <div class="zhl-form-group">
+                            <select name="service_type" class="zhl-select">
+                                <option value="" disabled selected>What are you looking for?</option>
+                                <option value="Conversion Optimization">Conversion Optimization</option>
+                                <option value="Complete Site Build">Complete Site Build</option>
+                                <option value="Site Redesign">Site Redesign</option>
+                                <option value="Ongoing Partnership">Ongoing Partnership</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="zhl-popup-btn">
+                            <span class="btn-text">Get Started</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
 
                 <p class="zhl-popup-trust">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -623,7 +677,7 @@
     </div>
 
     <!-- ==========================================
-        2. EXIT-INTENT POPUP
+        2. EXIT-INTENT POPUP (Multi-step)
         ========================================== -->
     <div id="zhl-popup-exit" class="zhl-popup" role="dialog" aria-modal="true" aria-labelledby="zhl-popup-exit-title">
         <div class="zhl-popup-backdrop"></div>
@@ -637,38 +691,93 @@
             </button>
 
             <div class="zhl-popup-content">
-                <span class="zhl-popup-label">Before You Go</span>
+                <!-- Step Indicator -->
+                <div class="zhl-step-indicator">
+                    <span class="zhl-step active" data-step="1">1</span>
+                    <span class="zhl-step-line"></span>
+                    <span class="zhl-step" data-step="2">2</span>
+                </div>
 
-                <h2 id="zhl-popup-exit-title" class="zhl-popup-title">
-                    Let's talk about<br>
-                    <span class="zhl-title-accent">your project.</span>
-                </h2>
+                <!-- Step 1: Email -->
+                <div class="zhl-popup-step" data-step="1">
+                    <span class="zhl-popup-label">Before You Go</span>
 
-                <p class="zhl-popup-desc">
-                    Drop your email and we'll reach out to discuss how we can help grow your ecommerce business.
-                </p>
+                    <h2 id="zhl-popup-exit-title" class="zhl-popup-title">
+                        Let's talk about<br>
+                        <span class="zhl-title-accent">your project.</span>
+                    </h2>
 
-                <form id="zhl-popup-exit-form" class="zhl-popup-form" action="https://api.web3forms.com/submit"
-                    method="POST">
-                    <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
-                    <input type="hidden" name="subject" value="Quick Inquiry (Exit Intent) - Zero Hour Labs">
-                    <input type="hidden" name="from_name" value="ZHL Exit Intent Lead">
-                    <input type="checkbox" name="botcheck" style="display: none;">
+                    <p class="zhl-popup-desc">
+                        Drop your email and we'll reach out to discuss how we can help grow your ecommerce business.
+                    </p>
 
-                    <div class="zhl-form-group">
-                        <input type="email" name="email" placeholder="Enter your email" required>
+                    <div class="zhl-popup-form-step">
+                        <div class="zhl-form-group">
+                            <input type="email" id="zhl-exit-email" placeholder="Enter your email" required>
+                        </div>
+
+                        <button type="button" class="zhl-popup-btn zhl-next-step-btn" data-next="2">
+                            <span class="btn-text">Continue</span>
+                            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
+                </div>
 
-                    <button type="submit" class="zhl-popup-btn">
-                        <span class="btn-text">Get Started</span>
-                        <span class="btn-loading" style="display: none;">Sending...</span>
-                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                        </svg>
-                    </button>
-                </form>
+                <!-- Step 2: Details -->
+                <div class="zhl-popup-step" data-step="2" style="display: none;">
+                    <span class="zhl-popup-label">Almost There</span>
+
+                    <h2 class="zhl-popup-title">
+                        Tell us a bit<br>
+                        <span class="zhl-title-accent">about yourself.</span>
+                    </h2>
+
+                    <p class="zhl-popup-desc">
+                        Help us personalize our response to your needs.
+                    </p>
+
+                    <form id="zhl-popup-exit-form" class="zhl-popup-form" action="https://api.web3forms.com/submit"
+                        method="POST">
+                        <input type="hidden" name="access_key" value="0abe77fd-c0ab-430d-999b-373b6db9828f">
+                        <input type="hidden" name="subject" value="">
+                        <input type="hidden" name="from_name" value="ZHL Lead">
+                        <input type="hidden" name="email" id="zhl-exit-email-hidden" value="">
+                        <input type="checkbox" name="botcheck" style="display: none;">
+
+                        <div class="zhl-form-group">
+                            <input type="text" name="name" placeholder="Your name *" required>
+                        </div>
+
+                        <div class="zhl-form-group">
+                            <input type="text" name="company" placeholder="Business name (optional)">
+                        </div>
+
+                        <div class="zhl-form-group">
+                            <select name="service_type" class="zhl-select">
+                                <option value="" disabled selected>What are you looking for?</option>
+                                <option value="Conversion Optimization">Conversion Optimization</option>
+                                <option value="Complete Site Build">Complete Site Build</option>
+                                <option value="Site Redesign">Site Redesign</option>
+                                <option value="Ongoing Partnership">Ongoing Partnership</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="zhl-popup-btn">
+                            <span class="btn-text">Get Started</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
 
                 <p class="zhl-popup-trust">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -701,402 +810,6 @@
             </svg>
         </span>
     </a>
-
-    <style>
-        .zhl-popup,
-        .zhl-sticky-cta,
-        .zhl-micro-cta {
-            --zhl-white: #ffffff;
-            --zhl-off-white: #fafafa;
-            --zhl-gray-50: #f0eeea;
-            --zhl-gray-100: #f1f1f1;
-            --zhl-gray-200: #e5e5e5;
-            --zhl-gray-300: #d4d4d4;
-            --zhl-gray-400: #a3a3a3;
-            --zhl-gray-500: #737373;
-            --zhl-gray-600: #525252;
-            --zhl-gray-700: #404040;
-            --zhl-gray-800: #262626;
-            --zhl-gray-900: #171717;
-            --zhl-black: #0a0a0a;
-
-            --zhl-font-display: 'Instrument Serif', Georgia, serif;
-            --zhl-font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            --zhl-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-
-            --zhl-radius-sm: 6px;
-            --zhl-radius-md: 10px;
-            --zhl-radius-lg: 16px;
-            --zhl-radius-xl: 24px;
-            --zhl-radius-full: 100px;
-
-            --zhl-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-            --zhl-duration-fast: 150ms;
-            --zhl-duration-normal: 300ms;
-            --zhl-duration-slow: 500ms;
-
-            --zhl-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-            --zhl-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
-            --zhl-shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.12);
-        }
-
-        /* ============================================
-           POPUP STYLES (shared between both popups)
-           ============================================ */
-        .zhl-popup {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .zhl-popup.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .zhl-popup-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .zhl-popup-container {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            max-width: 720px;
-            width: 100%;
-            background: var(--zhl-white);
-            border: 1px solid var(--zhl-gray-200);
-            border-radius: var(--zhl-radius-xl);
-            overflow: hidden;
-            box-shadow: var(--zhl-shadow-xl), 0 0 0 1px rgba(0, 0, 0, 0.03);
-            transform: scale(0.95) translateY(10px);
-            transition: transform 0.5s var(--zhl-ease-out);
-        }
-
-        .zhl-popup.active .zhl-popup-container {
-            transform: scale(1) translateY(0);
-        }
-
-        .zhl-popup-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            z-index: 10;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--zhl-gray-50);
-            border: 1px solid var(--zhl-gray-200);
-            border-radius: 50%;
-            color: var(--zhl-gray-500);
-            cursor: pointer;
-            transition: all var(--zhl-duration-normal) var(--zhl-ease-out);
-        }
-
-        .zhl-popup-close:hover {
-            background: var(--zhl-gray-100);
-            color: var(--zhl-gray-900);
-            transform: rotate(90deg);
-        }
-
-        .zhl-popup-content {
-            padding: 48px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .zhl-popup-label {
-            display: inline-block;
-            font-family: var(--zhl-font-mono);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--zhl-gray-400);
-            padding: 6px 12px;
-            border: 1px solid var(--zhl-gray-300);
-            border-radius: var(--zhl-radius-full);
-            margin-bottom: 20px;
-            width: fit-content;
-        }
-
-        .zhl-popup-title {
-            font-family: var(--zhl-font-display);
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 1.15;
-            color: var(--zhl-gray-900);
-            margin: 0 0 16px 0;
-        }
-
-        .zhl-title-accent {
-            font-style: italic;
-            color: var(--zhl-gray-600);
-        }
-
-        .zhl-popup-desc {
-            font-family: var(--zhl-font-body);
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--zhl-gray-600);
-            margin: 0 0 24px 0;
-        }
-
-        .zhl-popup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .zhl-form-group input {
-            width: 100%;
-            padding: 14px 16px;
-            font-family: var(--zhl-font-body);
-            font-size: 1rem;
-            color: var(--zhl-gray-900);
-            background: var(--zhl-gray-50);
-            border: 1px solid var(--zhl-gray-200);
-            border-radius: var(--zhl-radius-md);
-            transition: all var(--zhl-duration-fast);
-        }
-
-        .zhl-form-group input::placeholder {
-            color: var(--zhl-gray-400);
-        }
-
-        .zhl-form-group input:focus {
-            outline: none;
-            border-color: var(--zhl-gray-400);
-            background: var(--zhl-white);
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .zhl-popup-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 14px 24px;
-            font-family: var(--zhl-font-body);
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: var(--zhl-white);
-            background: var(--zhl-gray-900);
-            border: none;
-            border-radius: var(--zhl-radius-full);
-            cursor: pointer;
-            transition: all var(--zhl-duration-normal) var(--zhl-ease-out);
-        }
-
-        .zhl-popup-btn:hover:not(:disabled) {
-            background: var(--zhl-black);
-            transform: translateY(-2px);
-            box-shadow: var(--zhl-shadow-lg);
-        }
-
-        .zhl-popup-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .zhl-popup-btn .btn-icon {
-            transition: transform var(--zhl-duration-normal) var(--zhl-ease-out);
-        }
-
-        .zhl-popup-btn:hover:not(:disabled) .btn-icon {
-            transform: translateX(4px);
-        }
-
-        .zhl-popup-trust {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--zhl-font-body);
-            font-size: 0.8125rem;
-            color: var(--zhl-gray-400);
-            margin-top: 16px;
-        }
-
-        .zhl-popup-trust svg {
-            color: var(--zhl-gray-300);
-        }
-
-        /* Visual side panel */
-        .zhl-popup-visual {
-            position: relative;
-            background: var(--zhl-gray-900);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .zhl-visual-pattern {
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 1px 1px, var(--zhl-gray-700) 1px, transparent 0);
-            background-size: 24px 24px;
-            opacity: 0.5;
-        }
-
-        .zhl-visual-stat {
-            position: relative;
-            text-align: center;
-            padding: 24px;
-        }
-
-        .zhl-stat-value {
-            display: block;
-            font-family: var(--zhl-font-display);
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--zhl-white);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .zhl-stat-label {
-            font-family: var(--zhl-font-mono);
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--zhl-gray-400);
-        }
-
-        /* Popup mobile responsive */
-        @media (max-width: 700px) {
-            .zhl-popup-container {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-
-            .zhl-popup-visual {
-                display: none;
-            }
-
-            .zhl-popup-content {
-                padding: 32px 24px;
-            }
-
-            .zhl-popup-title {
-                font-size: 1.625rem;
-            }
-
-            .zhl-popup-title br {
-                display: none;
-            }
-
-            .zhl-popup-desc {
-                font-size: 0.9375rem;
-            }
-        }
-
-        /* ============================================
-           STICKY FLOATING CTA STYLES
-           ============================================ */
-        .zhl-sticky-cta {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 9000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 20px;
-            font-family: var(--zhl-font-body);
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: var(--zhl-white);
-            background: var(--zhl-gray-900);
-            border-radius: var(--zhl-radius-full);
-            box-shadow: var(--zhl-shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px) scale(0.9);
-            transition: all var(--zhl-duration-normal) var(--zhl-ease-out);
-        }
-
-        .zhl-sticky-cta.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .zhl-sticky-cta:hover {
-            background: var(--zhl-black);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: var(--zhl-shadow-xl);
-        }
-
-        .zhl-sticky-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform var(--zhl-duration-normal) var(--zhl-ease-out);
-        }
-
-        .zhl-sticky-cta:hover .zhl-sticky-icon {
-            transform: translateX(4px);
-        }
-
-        /* Hide when near contact section or footer */
-        .zhl-sticky-cta.near-contact {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px) scale(0.9);
-        }
-
-        /* Mobile: icon only */
-        @media (max-width: 600px) {
-            .zhl-sticky-cta {
-                padding: 16px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .zhl-sticky-text {
-                display: none;
-            }
-
-            .zhl-sticky-icon svg {
-                width: 22px;
-                height: 22px;
-            }
-        }
-
-        /* ============================================
-           REDUCED MOTION
-           ============================================ */
-        @media (prefers-reduced-motion: reduce) {
-
-            .zhl-popup,
-            .zhl-popup-container,
-            .zhl-sticky-cta,
-            .zhl-micro-cta {
-                transition: opacity 0.1s ease !important;
-                transform: none !important;
-            }
-        }
-    </style>
 
     <!-- ==========================================
         JAVASCRIPT
@@ -1188,8 +901,8 @@
                 timedPopup: {
                     cookieName: 'zhl_timed_popup',
                     cookieDays: 7,
-                    delayDesktop: 20000,        // 20 seconds on desktop
-                    delayMobile: 25000          // 25 seconds on mobile
+                    delayDesktop: 7000,        // 7 seconds on desktop
+                    delayMobile: 7000          // 7 seconds on mobile
                 },
                 exitPopup: {
                     cookieName: 'zhl_exit_popup',
@@ -1212,15 +925,72 @@
             };
 
             // ==========================================
-            // 1. TIMED POPUP
+            // MULTI-STEP POPUP UTILITIES
+            // ==========================================
+            const MultiStepUtil = {
+                goToStep: function (popup, stepNumber) {
+                    const steps = popup.querySelectorAll('.zhl-popup-step');
+                    const indicators = popup.querySelectorAll('.zhl-step');
+
+                    steps.forEach(step => {
+                        const stepNum = parseInt(step.getAttribute('data-step'));
+                        step.style.display = stepNum === stepNumber ? 'block' : 'none';
+                    });
+
+                    indicators.forEach(indicator => {
+                        const indicatorStep = parseInt(indicator.getAttribute('data-step'));
+                        indicator.classList.remove('active', 'completed');
+                        if (indicatorStep < stepNumber) {
+                            indicator.classList.add('completed');
+                        } else if (indicatorStep === stepNumber) {
+                            indicator.classList.add('active');
+                        }
+                    });
+                },
+
+                validateEmail: function (email) {
+                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return re.test(email);
+                },
+
+                generateSubject: function (name, company, serviceType) {
+                    let subject = '';
+
+                    // Build personalized subject based on service type
+                    if (serviceType && serviceType !== '') {
+                        subject = serviceType + ' Inquiry';
+                    } else {
+                        subject = 'Project Inquiry';
+                    }
+
+                    // Add name
+                    if (name) {
+                        subject += ' from ' + name;
+                    }
+
+                    // Add company if provided
+                    if (company && company.trim() !== '') {
+                        subject += ' at ' + company;
+                    }
+
+                    return subject;
+                }
+            };
+
+            // ==========================================
+            // 1. TIMED POPUP (Multi-step)
             // ==========================================
             const TimedPopup = {
                 element: null,
                 form: null,
+                emailInput: null,
+                emailHidden: null,
 
                 init: function () {
                     this.element = document.getElementById('zhl-popup-timed');
                     this.form = document.getElementById('zhl-popup-timed-form');
+                    this.emailInput = document.getElementById('zhl-timed-email');
+                    this.emailHidden = document.getElementById('zhl-timed-email-hidden');
 
                     if (!this.element) return;
 
@@ -1259,6 +1029,45 @@
                         }
                     });
 
+                    // Next step button (Step 1 → Step 2)
+                    const nextBtn = this.element.querySelector('.zhl-next-step-btn');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', function () {
+                            const email = self.emailInput.value.trim();
+
+                            if (!MultiStepUtil.validateEmail(email)) {
+                                self.emailInput.style.borderColor = '#ef4444';
+                                self.emailInput.focus();
+                                return;
+                            }
+
+                            self.emailInput.style.borderColor = '';
+                            self.emailHidden.value = email;
+                            MultiStepUtil.goToStep(self.element, 2);
+
+                            // Focus on name field
+                            const nameInput = self.form.querySelector('input[name="name"]');
+                            if (nameInput) {
+                                setTimeout(function () { nameInput.focus(); }, 100);
+                            }
+                        });
+                    }
+
+                    // Form submission with dynamic subject
+                    this.form.addEventListener('submit', function (e) {
+                        const nameInput = self.form.querySelector('input[name="name"]');
+                        const companyInput = self.form.querySelector('input[name="company"]');
+                        const serviceSelect = self.form.querySelector('select[name="service_type"]');
+                        const subjectInput = self.form.querySelector('input[name="subject"]');
+
+                        const name = nameInput ? nameInput.value.trim() : '';
+                        const company = companyInput ? companyInput.value.trim() : '';
+                        const serviceType = serviceSelect ? serviceSelect.value : '';
+
+                        // Generate personalized subject
+                        subjectInput.value = MultiStepUtil.generateSubject(name, company, serviceType);
+                    });
+
                     // Form submission with double-submit protection
                     FormUtil.protect(this.form, 'timed_popup', function () {
                         PopupState.timedEngaged = true;
@@ -1290,10 +1099,14 @@
 
                     PopupState.timedShown = true;
                     PopupState.anyPopupOpen = true;
+
+                    // Reset to step 1
+                    MultiStepUtil.goToStep(this.element, 1);
+
                     this.element.classList.add('active');
                     document.body.style.overflow = 'hidden';
 
-                    const input = this.element.querySelector('input[type="email"]');
+                    const input = this.emailInput;
                     if (input) {
                         setTimeout(function () { input.focus(); }, 400);
                     }
@@ -1319,15 +1132,19 @@
             };
 
             // ==========================================
-            // 2. EXIT-INTENT POPUP
+            // 2. EXIT-INTENT POPUP (Multi-step)
             // ==========================================
             const ExitPopup = {
                 element: null,
                 form: null,
+                emailInput: null,
+                emailHidden: null,
 
                 init: function () {
                     this.element = document.getElementById('zhl-popup-exit');
                     this.form = document.getElementById('zhl-popup-exit-form');
+                    this.emailInput = document.getElementById('zhl-exit-email');
+                    this.emailHidden = document.getElementById('zhl-exit-email-hidden');
 
                     if (!this.element) return;
 
@@ -1364,6 +1181,45 @@
                         if (e.key === 'Escape' && self.element.classList.contains('active')) {
                             self.hide(true);
                         }
+                    });
+
+                    // Next step button (Step 1 → Step 2)
+                    const nextBtn = this.element.querySelector('.zhl-next-step-btn');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', function () {
+                            const email = self.emailInput.value.trim();
+
+                            if (!MultiStepUtil.validateEmail(email)) {
+                                self.emailInput.style.borderColor = '#ef4444';
+                                self.emailInput.focus();
+                                return;
+                            }
+
+                            self.emailInput.style.borderColor = '';
+                            self.emailHidden.value = email;
+                            MultiStepUtil.goToStep(self.element, 2);
+
+                            // Focus on name field
+                            const nameInput = self.form.querySelector('input[name="name"]');
+                            if (nameInput) {
+                                setTimeout(function () { nameInput.focus(); }, 100);
+                            }
+                        });
+                    }
+
+                    // Form submission with dynamic subject
+                    this.form.addEventListener('submit', function (e) {
+                        const nameInput = self.form.querySelector('input[name="name"]');
+                        const companyInput = self.form.querySelector('input[name="company"]');
+                        const serviceSelect = self.form.querySelector('select[name="service_type"]');
+                        const subjectInput = self.form.querySelector('input[name="subject"]');
+
+                        const name = nameInput ? nameInput.value.trim() : '';
+                        const company = companyInput ? companyInput.value.trim() : '';
+                        const serviceType = serviceSelect ? serviceSelect.value : '';
+
+                        // Generate personalized subject
+                        subjectInput.value = MultiStepUtil.generateSubject(name, company, serviceType);
                     });
 
                     // Form submission with double-submit protection
@@ -1404,10 +1260,14 @@
 
                     PopupState.exitShown = true;
                     PopupState.anyPopupOpen = true;
+
+                    // Reset to step 1
+                    MultiStepUtil.goToStep(this.element, 1);
+
                     this.element.classList.add('active');
                     document.body.style.overflow = 'hidden';
 
-                    const input = this.element.querySelector('input[type="email"]');
+                    const input = this.emailInput;
                     if (input) {
                         setTimeout(function () { input.focus(); }, 400);
                     }
