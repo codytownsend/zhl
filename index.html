@@ -460,14 +460,6 @@
                         <p class="contact-desc">Tell us about your project. We'll get back to you within 24 hours to
                             schedule a discovery call.</p>
 
-                        <div class="contact-info">
-                            <div class="contact-info-item">
-                                <span class="contact-info-label">Email</span>
-                                <a href="mailto:hello@zerohourlabs.com"
-                                    class="contact-info-value">hello@zerohourlabs.com</a>
-                            </div>
-                        </div>
-
                         <div class="social-links">
                             <a href="https://www.facebook.com/profile.php?id=61585725668985" target="_blank"
                                 rel="noopener noreferrer" aria-label="Facebook">
@@ -524,6 +516,17 @@
                                     <path d="m12 5 7 7-7 7" />
                                 </svg>
                             </button>
+
+                            <div class="contact-chat-option">
+                                <span class="contact-chat-text">Want to talk now?</span>
+                                <button type="button" class="contact-chat-btn" onclick="openTawkChat()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    <span>Start a chat</span>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -548,6 +551,7 @@
     </footer>
 
     <!-- Three.js -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Scripts -->
@@ -602,6 +606,18 @@
                                 <path d="M5 12h14" />
                                 <path d="m12 5 7 7-7 7" />
                             </svg>
+                        </button>
+
+                        <div class="zhl-chat-divider">
+                            <span>or</span>
+                        </div>
+
+                        <button type="button" class="zhl-chat-btn" onclick="openTawkChat()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span>Chat with us now</span>
                         </button>
                     </div>
                 </div>
@@ -723,6 +739,18 @@
                                 <path d="M5 12h14" />
                                 <path d="m12 5 7 7-7 7" />
                             </svg>
+                        </button>
+
+                        <div class="zhl-chat-divider">
+                            <span>or</span>
+                        </div>
+
+                        <button type="button" class="zhl-chat-btn" onclick="openTawkChat()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span>Chat with us now</span>
                         </button>
                     </div>
                 </div>
@@ -1386,6 +1414,55 @@
             }
         })();
     </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {};
+        var Tawk_LoadStart = new Date();
+
+        // Hide widget by default - we'll trigger it with custom buttons
+        Tawk_API.autoStart = false;
+
+        // Function to open chat and close any open popups
+        function openTawkChat() {
+            // Close any open popups first
+            var popups = document.querySelectorAll('.zhl-popup.active');
+            popups.forEach(function (popup) {
+                popup.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+
+            // Start Tawk if not already started, then maximize
+            if (typeof Tawk_API.start === 'function') {
+                Tawk_API.start();
+            }
+
+            // Small delay to ensure widget is ready
+            setTimeout(function () {
+                if (typeof Tawk_API.maximize === 'function') {
+                    Tawk_API.maximize();
+                }
+            }, 300);
+
+            // Track the event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'chat_opened', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Tawk Chat Opened'
+                });
+            }
+        }
+
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/695c1242d17c7219796b35f4/1je7qelfp';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 
 </html>
