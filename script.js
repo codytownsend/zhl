@@ -196,71 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     // FORM HANDLING
     // ============================================
-    
-    const contactForm = document.querySelector('.contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `
-                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32">
-                        <animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/>
-                    </circle>
-                </svg>
-                Sending...
-            `;
-            
-            try {
-                const formData = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (response.ok) {
-                    // Success
-                    submitBtn.innerHTML = `
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 6L9 17l-5-5"/>
-                        </svg>
-                        Message Sent
-                    `;
-                    submitBtn.style.background = '#22c55e';
-                    this.reset();
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                    }, 3000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                // Error
-                submitBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
-                    Try Again
-                `;
-                submitBtn.style.background = '#ef4444';
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 3000);
-            }
-        });
-    }
+    // Note: Form submission is handled in index.html's inline script
+    // via FormUtil.protect() with HubSpot integration
 
     // ============================================
     // KEYBOARD NAVIGATION
