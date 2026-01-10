@@ -1052,6 +1052,8 @@
                             }
 
                             // Redirect to thank-you page after brief delay
+                            // Note: Don't reset isSubmitting since we're redirecting anyway
+                            // This prevents duplicate submissions during the redirect delay
                             setTimeout(function () {
                                 window.location.href = '/thank-you.html';
                             }, 1000);
@@ -1059,9 +1061,8 @@
                         } catch (error) {
                             console.error('Form submission error:', error);
                             FormUtil.showError(btn, originalText);
+                            isSubmitting = false; // Only reset on error so user can retry
                         }
-
-                        isSubmitting = false;
                     });
                 }
             };
