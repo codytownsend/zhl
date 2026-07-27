@@ -2568,3 +2568,189 @@ body.loaded {
         transform: none !important;
     }
 }
+
+/* ============================================
+    BLOG ARCHIVE
+    ============================================ */
+.blog-archive {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-4xl);
+}
+
+.archive-header {
+    max-width: 720px;
+    margin-bottom: var(--space-3xl);
+}
+
+.archive-header .section-title {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.archive-header .section-desc {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 560px;
+}
+
+/* Featured (most recent) post */
+.archive-featured {
+    display: block;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    transition: border-color var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out),
+        transform var(--duration-normal) var(--ease-out);
+}
+
+.archive-featured:hover {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.archive-featured-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin: var(--space-md) 0;
+    max-width: 20ch;
+}
+
+.archive-featured-excerpt {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 60ch;
+    margin-bottom: var(--space-lg);
+}
+
+/* Card grid */
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.archive-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out),
+        transform var(--duration-normal) var(--ease-out);
+}
+
+.archive-card:hover {
+    border-color: var(--gray-300);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.archive-card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--space-lg);
+}
+
+.archive-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-sm);
+}
+
+.archive-category {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.archive-meta-sep {
+    color: var(--gray-300);
+}
+
+.archive-card-title {
+    font-family: var(--font-body);
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    transition: color var(--duration-fast);
+}
+
+.archive-card:hover .archive-card-title {
+    color: var(--text-secondary);
+}
+
+.archive-card-excerpt {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.archive-readmore {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.archive-empty {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+@media (max-width: 900px) {
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .blog-archive {
+        padding: calc(64px + var(--space-2xl)) 0 var(--space-3xl);
+    }
+
+    .archive-header {
+        margin-bottom: var(--space-2xl);
+    }
+
+    .archive-featured {
+        padding: var(--space-xl);
+    }
+
+    .archive-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Footer blog link */
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.footer-link {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    transition: color var(--duration-fast);
+}
+
+.footer-link:hover {
+    color: var(--text-primary);
+}

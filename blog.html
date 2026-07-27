@@ -1,0 +1,55 @@
+---
+layout: default
+title: "Insights & Guides"
+description: "Practical, no-fluff guides on ecommerce conversion, site speed, and turning traffic into revenue."
+permalink: /blog/
+---
+
+<section class="blog-archive">
+    <div class="container">
+        <div class="archive-header">
+            <span class="section-label">The Blog</span>
+            <h1 class="section-title">Conversion insights,<br><span class="text-accent">minus the fluff.</span></h1>
+            <p class="section-desc">Practical guides on turning traffic into revenue—site speed, checkout, trust,
+                and everything in between.</p>
+        </div>
+
+        {% assign posts = site.posts %}
+        {% if posts.size > 0 %}
+        {% assign featured = posts.first %}
+        <a href="{{ featured.url | relative_url }}" class="archive-featured">
+            <div class="archive-featured-body">
+                <div class="archive-card-meta">
+                    <span class="archive-category">{{ featured.category }}</span>
+                    <span class="archive-meta-sep">·</span>
+                    <time datetime="{{ featured.date | date: '%Y-%m-%d' }}">{{ featured.date | date: "%b %d, %Y" }}</time>
+                    <span class="archive-meta-sep">·</span>
+                    <span>{{ featured.reading_time | default: "5 min read" }}</span>
+                </div>
+                <h2 class="archive-featured-title">{{ featured.title }}</h2>
+                <p class="archive-featured-excerpt">{{ featured.subtitle | default: featured.description }}</p>
+                <span class="archive-readmore">Read article →</span>
+            </div>
+        </a>
+
+        <div class="archive-grid">
+            {% for post in posts offset:1 %}
+            <article class="archive-card">
+                <a href="{{ post.url | relative_url }}" class="archive-card-link">
+                    <div class="archive-card-meta">
+                        <span class="archive-category">{{ post.category }}</span>
+                        <span class="archive-meta-sep">·</span>
+                        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                    </div>
+                    <h2 class="archive-card-title">{{ post.title }}</h2>
+                    <p class="archive-card-excerpt">{{ post.subtitle | default: post.description | strip_html | truncate: 130 }}</p>
+                    <span class="archive-readmore">{{ post.reading_time | default: "5 min read" }} &rarr;</span>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="archive-empty">New articles coming soon.</p>
+        {% endif %}
+    </div>
+</section>
