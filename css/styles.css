@@ -665,6 +665,11 @@ a {
     border-radius: var(--radius-full);
 }
 
+.service-card:hover .service-list li {
+   background: var(--accent);
+   color: var(--bg-primary);
+}
+
 /* ============================================
    WORK/TESTIMONIALS SECTION
    ============================================ */
